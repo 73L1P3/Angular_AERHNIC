@@ -1,0 +1,18 @@
+.nav-button {
+  text-decoration: none;
+  color: #000;
+  background-color: #a0c4ff;
+}
+
+@media (min-width: 992px) {
+  .nav-button {
+    border-radius: 50px;
+    margin: 0 1rem;
+    padding: 0.3rem 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .btn.btn-primary {
+  }
+}
