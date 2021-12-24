@@ -1,0 +1,3 @@
+ng new aerhnic //creamos el nuevo proyecto
+npm install bootstrap jquery @popperjs/core // instalamos librerias necesarias
+ng generate component navbar // generamos el componente de navbar
