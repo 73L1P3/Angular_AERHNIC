@@ -1,7 +1,7 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand"  [routerLink]="['/inicio']" routerLinkActive="router-link-active">
           <img src="./assets/img/aerhnic-logo.png" alt="logo">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,16 +11,16 @@
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="active nav-button btn btn-primary" aria-current="page" href="#">Inicio</a>
+              <a class="active nav-button btn btn-primary" aria-current="page" [routerLink]="['/inicio']" routerLinkActive="router-link-active" >Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="active nav-button btn btn-primary" aria-current="page" href="#">Nuevo</a>
+              <a class="active nav-button btn btn-primary" aria-current="page" [routerLink]="['/nuevo']" routerLinkActive="router-link-active">Nuevo</a>
             </li>
             <li class="nav-item">
               <a class="active nav-button btn btn-primary" aria-current="page" [routerLink]="['/socios']" routerLinkActive="router-link-active" >Socios</a>
             </li>
             <li class="nav-item">
-              <a class="active nav-button btn btn-primary" aria-current="page" href="https://es.wikipedia.org/wiki/Wikipedia:Portada">Cumpleanios</a>
+              <a class="active nav-button btn btn-primary" aria-current="page" [routerLink]="['/cumple']" routerLinkActive="router-link-active" >Cumpleaños</a>
             </li>	
           </ul>		  
         </div>

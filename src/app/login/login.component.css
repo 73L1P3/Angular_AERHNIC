@@ -1,0 +1,38 @@
+.div-azul {
+  height: 100vh;
+  background-color: #344da0;
+}
+
+.div-blanco {
+  background-color: #fff;
+  width: 500px;
+  margin-top: 50px;
+}
+
+.div-logo {
+  padding-top: 2rem;
+}
+
+.div-text {
+  padding: 2rem 2rem 0 2rem;
+}
+
+.form-login {
+  padding: 2rem;
+}
+
+.btn-submit {
+  border-radius: 50px;
+  margin: 0 1rem;
+  padding: 0.3rem 3rem;
+  text-decoration: none;
+  color: #000;
+  background-color: #a0c4ff;
+}
+
+@media (max-width: 600px) {
+  .div-blanco {
+    max-width: 100%;
+    margin-top: 0;
+  }
+}
