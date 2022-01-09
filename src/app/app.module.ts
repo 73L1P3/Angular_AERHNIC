@@ -11,6 +11,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import { LoginComponent } from './login/login.component';
 
 import { DataTablesModule } from 'angular-datatables';
+import { CalendarModule, DateAdapter  } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns'
 
 @NgModule({
   declarations: [
@@ -25,7 +27,11 @@ import { DataTablesModule } from 'angular-datatables';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DataTablesModule
+    DataTablesModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

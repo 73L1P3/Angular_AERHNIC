@@ -12,7 +12,8 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 850px) {
   .btn.btn-primary {
+    width: 100%;
   }
 }
