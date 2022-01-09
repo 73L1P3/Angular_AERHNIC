@@ -1,1 +1,19 @@
 <p>socios works!</p>
+
+<div class="container">
+    <table datatable  class="row-border hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Club Name</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of jsonData">
+            <td>{{item.playerName}}</td>
+            <td>{{item.playerCountry}}</td>
+            <td>{{item.playerClub}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
