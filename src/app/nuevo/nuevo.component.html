@@ -1,13 +1,18 @@
 <div class="container">
     <form>
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Nombre</label>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" placeholder="Nombre" aria-label="Username">
         </div>
 
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Correo Electronico</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+            <input type="text" class="form-control" placeholder="Apellido" aria-label="Username">
+        </div>
+
+        <div class="mb-3">
+            <label for="emailInput" class="form-label">Correo Electronico</label>
+            <input type="email" class="form-control" id="emailInput" placeholder="Correo Electronico" aria-describedby="emailHelp">
         </div>
 
         <div class="row g-2">
@@ -58,8 +63,7 @@
                 <option selected>Escoge...</option>
                 <option value="1">Hombre</option>
                 <option value="2">Mujer</option>
-                <option value="3">Si</option>
-                <option value="4">Otros (Trastorno Mental)</option>
+                <option value="3">Otro</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Ingresar</button>
