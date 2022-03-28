@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Socio } from '../ISocio'; // Interfaz
+import { SOCIOS } from '../mock-socios'; // BD
+import { SociosService  } from '../socios.service'; //Servicio
 
 @Component({
   selector: 'app-socios',
@@ -7,14 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SociosComponent implements OnInit {
 
-  constructor() { }
+  // socios = SOCIOS;
+  socios: Socio[] = [];
+
+  socioSeleccionado?: Socio;
+
+  constructor(private sociosService: SociosService) { }
 
   ngOnInit(): void {
+    this.obtenerSocios();
+  }
+
+  onSelect(socio: Socio): void {
+    this.socioSeleccionado = socio;
+  }
+
+  obtenerSocios(): void {
+    // this.socios = this.sociosService.obtenerSocios(); // Metodo sincrono
+    this.sociosService.obtenerSocios().subscribe(socios => this.socios = socios); // Esperamos que el server nos mande los datos - Metodo asincrono
   }
 
   title = 'angular-datatables-example';
 
-   jsonData : any = [{
+  jsonData : any = [{
     playerName: 'Cristiano Ronaldo',
     playerCountry: 'Pourtgal',
     playerClub: 'Juventus'

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +13,9 @@ import { LoginComponent } from './login/login.component';
 
 import { DataTablesModule } from 'angular-datatables';
 import { CalendarModule, DateAdapter  } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns'
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { SocioDetalleComponent } from './socio-detalle/socio-detalle.component';
+import { MensajesComponent } from './mensajes/mensajes.component'
 
 @NgModule({
   declarations: [
@@ -22,11 +25,14 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns'
     NuevoComponent,
     CumpleComponent,
     InicioComponent,
-    LoginComponent
+    LoginComponent,
+    SocioDetalleComponent,
+    MensajesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     DataTablesModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
