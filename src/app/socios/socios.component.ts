@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Socio } from '../ISocio'; // Interfaz
 import { SOCIOS } from '../mock-socios'; // BD
+
 import { SociosService  } from '../socios.service'; //Servicio
+import { MensajeService } from '../mensaje.service';
 
 @Component({
   selector: 'app-socios',
@@ -15,7 +18,7 @@ export class SociosComponent implements OnInit {
 
   socioSeleccionado?: Socio;
 
-  constructor(private sociosService: SociosService) { }
+  constructor(private sociosService: SociosService, private mensajeService: MensajeService) { }
 
   ngOnInit(): void {
     this.obtenerSocios();
@@ -23,6 +26,7 @@ export class SociosComponent implements OnInit {
 
   onSelect(socio: Socio): void {
     this.socioSeleccionado = socio;
+    this.mensajeService.add(`Componente de Socios: Socio seleccionado con ID=${socio.id}`);
   }
 
   obtenerSocios(): void {

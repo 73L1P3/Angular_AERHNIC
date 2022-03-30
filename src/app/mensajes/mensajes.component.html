@@ -1,1 +1,5 @@
-<p>mensajes works!</p>
+<div *ngIf="mensajesServicio.mensajes.length">
+<h2>Notificaciones</h2>
+<button type="button" class="clear" (click)="mensajesServicio.clear()">Limpiar Notificaciones</button>
+<div *ngFor="let mensaje of mensajesServicio.mensajes"> {{mensaje}} </div>
+</div>
