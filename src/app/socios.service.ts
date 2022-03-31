@@ -18,5 +18,11 @@ export class SociosService {
     this.mensajeService.add('Servicio de Socios: Socios obtenidos')
     return socios;
   }
+
+  obtenerSocio(id: number): Observable<Socio>{
+    const socio = SOCIOS.find(a => a.id === id)!;
+    this.mensajeService.add(`Servicio de Notificaciones: Socio obtenido con ID=${id}`);
+    return of(socio);
+  }
 }
 

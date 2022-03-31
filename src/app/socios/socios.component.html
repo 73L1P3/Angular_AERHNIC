@@ -32,38 +32,8 @@
             <td>{{socio.apellido}}</td>
             <td>{{socio.cargo}}</td>
             <td>{{socio.empresa}}</td>
-            <td><button class="btn-primary" [class.selected]="socio === socioSeleccionado" type="button" (click)="onSelect(socio)">Editar</button></td>
+            <td><button class="btn-primary" [class.selected]="socio === socioSeleccionado" type="button" routerLink="/detalle/{{socio.id}}" routerLinkActive="router-link-active"  (click)="onSelect(socio)">Editar</button></td>
         </tr>
         </tbody>
     </table>
 </div>
-
-<app-socio-detalle [socio]="socioSeleccionado"></app-socio-detalle>
-
-<!-- <div *ngIf="socioSeleccionado">
-
-<h2>{{socioSeleccionado.nombre | uppercase}} Details</h2>
-<div>id: {{socioSeleccionado.id}}</div>
-<div>
-    <label for="hero-name">Nombre del Socio: </label>
-    <input id="hero-name" [(ngModel)]="socioSeleccionado.nombre" placeholder="name">   
-</div>
-
-</div> -->
-
-<!-- <div class="container">
-    <h2>Usuarios</h2>
-    <div *ngFor="let socios of ListaDeSocios">
-        <h3> 
-            <a [title]="socios.nombre" + ' detalle'> {{socios.nombre}} </a>
-        </h3>
-
-        <p *ngIf="socios.comentario">
-            Description: {{ socios.comentario }}
-        </p>
-
-        <button type="button" (click)="share()">
-            Editar
-        </button>
-    </div>
-</div> -->

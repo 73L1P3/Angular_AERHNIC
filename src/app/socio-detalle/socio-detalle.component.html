@@ -1,11 +1,63 @@
-<div class="container">
     <div *ngIf="socio">
+        <div class="container">
+            <br>
+                <div class="row g-2">
+                    <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" [(ngModel)]="socio.nombre" class="form-control" id="nombre">
+                        <label for="floatingInput">Nombre del Socio</label>
+                    </div>
 
-        <h2>Detalles de {{socio.nombre}}</h2>
-        <div><span>id: </span>{{socio.id}}</div>
-        <div>
-            <label for="hero-name">Nombre del Socio: </label>
-            <input id="hero-name" [(ngModel)]="socio.nombre" placeholder="name">
-        </div>
+                    </div>
+                    <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" [(ngModel)]="socio.apellido" class="form-control" id="apellido">
+                        <label for="floatingInput">Apellido</label>
+                    </div>
+                    </div>
+                </div>
+        
+                <div class="mb-3">
+                    <br/>
+                    <input type="email" class="form-control" [(ngModel)]="socio.correo" id="emailInput" placeholder="Correo Electronico" aria-describedby="emailHelp">
+                </div>
+        
+                <div class="row g-2">
+                    <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" [(ngModel)]="socio.empresa" class="form-control" id="floatingInput">
+                        <label for="floatingInput">Empresa</label>
+                    </div>
+                    </div>
+                    <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" [(ngModel)]="socio.cargo"  class="form-control" id="floatingInput">
+                        <label for="floatingInput">Cargo</label>
+                    </div>
+                    </div>
+                </div>
+        
+                <br/>
+                <div class="row g-2">
+                    <div class="col-md">
+                        <input type="text" [(ngModel)]="socio.telefonoCelular"  class="form-control" id="emailInput" placeholder="Telefono Celular" aria-describedby="phone">
+                    </div>
+            
+                    <div class="col-md">
+                        <input type="text" [(ngModel)]="socio.telefonoEmpresa" class="form-control" id="emailInput" placeholder="Telefono Empresa" aria-describedby="phone">
+                    </div>
+                </div>
+        
+                <div class="mb-3">
+                    <br/>
+                    <input type="text" [(ngModel)]="socio.cedula" class="form-control" id="emailInput" placeholder="Cedula" aria-describedby="cedula">
+                </div>
+        
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Comentario</label>
+                    <textarea class="form-control" [(ngModel)]="socio.comentario" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+        
+                <button type="button" class="btn btn-primary" (click)="regresar()">Actualizar</button>
     </div>
 </div>

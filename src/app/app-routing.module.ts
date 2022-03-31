@@ -7,8 +7,12 @@ import { NuevoComponent  } from './nuevo/nuevo.component';
 import { CumpleComponent } from './cumple/cumple.component';
 import { InicioComponent  } from './inicio/inicio.component';
 import { LoginComponent  } from './login/login.component';
+import { SocioDetalleComponent } from './socio-detalle/socio-detalle.component';
+
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'detalle/:id', component: SocioDetalleComponent },
   { path: 'socios', component: SociosComponent },
   { path: 'home', component: AppComponent },
   {path: 'nuevo', component: NuevoComponent},
