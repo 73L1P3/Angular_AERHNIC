@@ -16,6 +16,12 @@ export class SocioDetalleComponent implements OnInit {
 
   socio: Socio | undefined;
 
+  enviado = false;
+
+  onSubmit() {
+    this.enviado = true;
+  }
+
   constructor(
     private route: ActivatedRoute,
     private socioServicio: SociosService,
@@ -31,8 +37,12 @@ export class SocioDetalleComponent implements OnInit {
     this.socioServicio.obtenerSocio(id).subscribe(socio => this.socio = socio);
   }
 
-  regresar(): void{
-    this.location.back();
+  guardar(): void{
+    if(this.socio){
+      this.socioServicio.actualizarSocio(this.socio)
+      .subscribe(() => this.location.back());
+      //.subscribe(() => this.goBack());
+    }
   }
 
 }

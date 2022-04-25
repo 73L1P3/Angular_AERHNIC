@@ -1,39 +1,49 @@
-<!-- <div class="container">
-    <table datatable  class="row-border hover">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Country</th>
-            <th>Club Name</th>
-        </thead>
-        <tbody>
-        <tr *ngFor="let item of jsonData">
-            <td>{{item.playerName}}</td>
-            <td>{{item.playerCountry}}</td>
-            <td>{{item.playerClub}}</td>
-        </tr>
-        </tbody>
-    </table>
-</div> -->
-
 <div class="container">
-    <table datatable  class="row-border hover">
-        <thead>
+  <button class="btn btn-primary" routerLink="/nuevo">Nuevo</button>
+</div>
+
+<div *ngIf="tabla">
+  <div class="container">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+      <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Cargo</th>
-            <th>Empresa</th>
-            <th>Opciones</th>
-        </thead>
-        <tbody>
-        <tr *ngFor="let socio of socios">
-            <td>{{socio.nombre}}</td>
-            <td>{{socio.apellido}}</td>
-            <td>{{socio.cargo}}</td>
-            <td>{{socio.empresa}}</td>
-            <td><button class="btn-primary" [class.selected]="socio === socioSeleccionado" type="button" routerLink="/detalle/{{socio.id}}" routerLinkActive="router-link-active"  (click)="onSelect(socio)">Editar</button></td>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Cargo</th>
+          <th>Empresa</th>
+          <th>Opciones</th>
         </tr>
-        </tbody>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let socio of socios">
+          <td #socioNombre>{{ socio.nombre }}</td>
+          <td>{{ socio.apellido }}</td>
+          <td>{{ socio.cargo }}</td>
+          <td>{{ socio.empresa }}</td>
+          <td>
+            <button
+              class="btn-primary"
+              [class.selected]="socio === socioSeleccionado"
+              type="button"
+              routerLink="/detalle/{{ socio.id }}"
+              routerLinkActive="router-link-active"
+              (click)="onSelect(socio)"
+            >
+              Editar
+            </button>
+
+            <button
+              class="btn-primary delete"
+              type="button"
+              title="Eliminar Socio"
+              (click)="eliminar(socio)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 </div>

@@ -16,6 +16,9 @@ export class SociosComponent implements OnInit {
   // socios = SOCIOS;
   socios: Socio[] = [];
 
+  dtOptions: any = {};
+  tabla: boolean = false;
+
   socioSeleccionado?: Socio;
 
   constructor(private sociosService: SociosService, private mensajeService: MensajeService) { }
@@ -31,7 +34,30 @@ export class SociosComponent implements OnInit {
 
   obtenerSocios(): void {
     // this.socios = this.sociosService.obtenerSocios(); // Metodo sincrono
-    this.sociosService.obtenerSocios().subscribe(socios => this.socios = socios); // Esperamos que el server nos mande los datos - Metodo asincrono
+    this.sociosService.obtenerSocios().subscribe(socios => {
+      this.socios = socios
+
+      this.dtOptions = socios;
+      this.tabla = true;
+    }); // Esperamos que el server nos mande los datos - Metodo asincrono
+    console.log('mostrar data')
+    
+  }
+
+  agregar(nombre: string): void {
+    if (!nombre) {
+      return;
+    }
+
+    this.sociosService.agregarSocio({nombre} as Socio)
+    .subscribe(socio => {
+      this.socios.push(socio); 
+    });
+  }
+
+  eliminar(socio: Socio): void {
+    this.socios = this.socios.filter(s => s !== socio);
+    this.sociosService.eliminarSocio(socio.id).subscribe();
   }
 
   title = 'angular-datatables-example';
