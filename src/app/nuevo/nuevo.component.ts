@@ -31,15 +31,21 @@ export class NuevoComponent implements OnInit {
   //   comentario: ''
   // });
 
+  // Validacion de campos
   formulario = new FormGroup({
     nombre: new FormControl('', [Validators.required]),
     apellido:new FormControl(''),
     correo: new FormControl(''),
+    ingreso: new FormControl(''),
     empresa: new FormControl(''),
     cargo: new FormControl(''),
+    categoria: new FormControl(''),
+    frecuencia: new FormControl(''),
     telefonoCel: new FormControl(''),
     telefonoEmp: new FormControl(''),
     cedula: new FormControl(''),
+    sexo: new FormControl(''),
+    direccion: new FormControl(''),
     comentario: new FormControl(''),
   })
 

@@ -36,19 +36,42 @@
       </div>
     </div>
 
-    <div class="mb-3">
-      <br />
-      <input
-        type="email"
-        class="form-control"
-        id="emailInput"
-        #socioCorreo
-        formControlName="correo"
-        placeholder="Correo Electronico"
-        aria-describedby="emailHelp"
-        required
-      />
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="emailInput"
+            aria-describedby="cedula"
+            #socioCedula
+            formControlName="cedula"
+            required
+          />
+          <label for="floatingInput">Cedula</label>
+        </div>
+      </div>
+
+      <div class="input-group col-md">
+        <label class="input-group-text" for="inputGroupSelect01">Sexo</label>
+        <select
+          class="form-select"
+          id="inputGroupSelect01"
+          formControlName="sexo"
+          #socioSexo
+          required
+          id="inputGroupSelect01"
+        >
+          <option value="Hombre">Hombre</option>
+          <option value="Mujer">Mujer</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
     </div>
+
+    <br />
 
     <div class="row g-2">
       <div class="col-md">
@@ -56,14 +79,76 @@
           <input
             type="email"
             class="form-control"
-            id="floatingInput"
-            #socioEmpresa
-            formControlName="empresa"
+            id="emailInput"
+            #socioCorreo
+            formControlName="correo"
+            aria-describedby="emailHelp"
             required
           />
-          <label for="floatingInput">Empresa</label>
+          <label for="floatingInput">Email</label>
         </div>
       </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control"
+            id="floatingInput"
+            #socioIngreso
+            formControlName="ingreso"
+            required
+          />
+          <label for="floatingInput">Fecha de Ingreso</label>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="col-md input-group">
+          <label class="input-group-text" for="inputGroupSelect01"
+            >Categoria de pago</label
+          >
+          <select
+            class="form-select"
+            id="inputGroupSelect01"
+            formControlName="categoria"
+            #pagoCategoria
+            required
+          >
+            <option value="A">Tipo A</option>
+            <option value="B">Tipo B</option>
+            <option value="C">Tipo C</option>
+            <option value="D">Tipo D</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md input-group">
+        <label class="input-group-text" for="inputGroupSelect01"
+          >Frecuencia de pago</label
+        >
+        <select
+          class="form-select"
+          id="inputGroupSelect01"
+          formControlName="frecuencia"
+          #pagoFrecuencia
+          required
+        >
+          <option value="Mensual">Mensual</option>
+          <option value="BI-Mensual">Bimensual</option>
+          <option value="Trimestral">Trimestral</option>
+          <option value="Anual">Anual</option>
+        </select>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row g-2">
       <div class="col-md">
         <div class="form-floating">
           <input
@@ -75,6 +160,20 @@
             required
           />
           <label for="floatingInput">Cargo</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            #socioEmpresa
+            formControlName="empresa"
+            required
+          />
+          <label for="floatingInput">Empresa</label>
         </div>
       </div>
     </div>
@@ -109,16 +208,7 @@
 
       <label for="floatingInput">Departamento</label>
     </div>
-
-    <div class="input-group mb-3">
-      <label class="input-group-text" for="inputGroupSelect01">Sexo</label>
-      <select class="form-select" id="inputGroupSelect01">
-        <option selected>Escoge...</option>
-        <option value="1">Hombre</option>
-        <option value="2">Mujer</option>
-        <option value="3">Otro</option>
-      </select>
-    </div> -->
+  -->
 
     <div class="row g-2">
       <div class="col-md">
@@ -148,26 +238,23 @@
       </div>
     </div>
 
+    <br />
+
     <div class="mb-3">
-      <br />
       <input
         type="text"
         class="form-control"
-        id="emailInput"
-        placeholder="Cedula"
-        aria-describedby="cedula"
-        #socioCedula
-        formControlName="cedula"
+        id="direccionInput"
+        placeholder="Direccion"
+        formControlName="direccion"
         required
       />
     </div>
 
     <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label"
-        >Comentario</label
-      >
       <textarea
         class="form-control"
+        placeholder="Comentario"
         id="exampleFormControlTextarea1"
         rows="3"
         formControlName="comentario"

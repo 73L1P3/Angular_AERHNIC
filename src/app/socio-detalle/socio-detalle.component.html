@@ -1,4 +1,4 @@
-<div *ngIf="socio">
+<!-- <div *ngIf="socio">
   <div class="container">
     <br />
     <div class="row g-2">
@@ -112,8 +112,243 @@
       ></textarea>
     </div>
 
-    <!-- <button type="button" class="btn btn-primary" (click)="guardar()">
+    <button type="button" class="btn btn-primary" (click)="guardar()">
       Actualizar
-    </button> -->
+    </button>
+  </div>
+</div> -->
+
+<div *ngIf="socio">
+  <div class="container">
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            #socioNombre
+            required
+            [(ngModel)]="socio.nombre"
+            name="nombre"
+          />
+
+          <!-- <div *ngIf="nombre && nombre.invalid" class="alert alert-danger">
+            Name is required
+          </div> -->
+
+          <label for="floatingInput">Nombre</label>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="apellido"
+            #socioApellido
+            [(ngModel)]="socio.apellido"
+            required
+          />
+          <label for="floatingInput">Apellido</label>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="emailInput"
+            aria-describedby="cedula"
+            #socioCedula
+            [(ngModel)]="socio.cedula"
+            required
+          />
+          <label for="floatingInput">Cedula</label>
+        </div>
+      </div>
+
+      <div class="input-group col-md">
+        <label class="input-group-text" for="inputGroupSelect01">Sexo</label>
+        <select
+          class="form-select"
+          id="inputGroupSelect01"
+          #socioSexo
+          required
+          [(ngModel)]="socio.sexo"
+          id="inputGroupSelect01"
+        >
+          <option value="Hombre">Hombre</option>
+          <option value="Mujer">Mujer</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="email"
+            class="form-control"
+            id="emailInput"
+            #socioCorreo
+            [(ngModel)]="socio.correo"
+            aria-describedby="emailHelp"
+            required
+          />
+          <label for="floatingInput">Email</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control"
+            id="floatingInput"
+            #socioIngreso
+            [(ngModel)]="socio.fechaIngreso"
+            required
+          />
+          <label for="floatingInput">Fecha de Ingreso</label>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="col-md input-group">
+          <label class="input-group-text" for="inputGroupSelect01"
+            >Categoria de pago</label
+          >
+          <select
+            class="form-select"
+            id="inputGroupSelect01"
+            #pagoCategoria
+            [(ngModel)]="socio.pagoCategoria"
+            required
+          >
+            <option value="A">Tipo A</option>
+            <option value="B">Tipo B</option>
+            <option value="C">Tipo C</option>
+            <option value="D">Tipo D</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md input-group">
+        <label class="input-group-text" for="inputGroupSelect01"
+          >Frecuencia de pago</label
+        >
+        <select
+          class="form-select"
+          id="inputGroupSelect01"
+          #pagoFrecuencia
+          [(ngModel)]="socio.pagoFrecuencia"
+          required
+        >
+          <option value="Mensual">Mensual</option>
+          <option value="BI-Mensual">Bimensual</option>
+          <option value="Trimestral">Trimestral</option>
+          <option value="Anual">Anual</option>
+        </select>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            #socioCargo
+            [(ngModel)]="socio.cargo"
+            required
+          />
+          <label for="floatingInput">Cargo</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            #socioEmpresa
+            [(ngModel)]="socio.empresa"
+            required
+          />
+          <label for="floatingInput">Empresa</label>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <input
+          type="text"
+          [(ngModel)]="socio.telefonoCelular"
+          class="form-control"
+          id="emailInput"
+          placeholder="Telefono Celular"
+          aria-describedby="phone"
+        />
+      </div>
+
+      <div class="col-md">
+        <input
+          type="text"
+          [(ngModel)]="socio.telefonoEmpresa"
+          class="form-control"
+          id="emailInput"
+          placeholder="Telefono Empresa"
+          aria-describedby="phone"
+        />
+      </div>
+    </div>
+
+    <br />
+
+    <div class="mb-3">
+      <input
+        type="text"
+        [(ngModel)]="socio.direccion"
+        class="form-control"
+        id="direccionInput"
+        placeholder="Direccion"
+      />
+    </div>
+
+    <div class="mb-3">
+      <textarea
+        class="form-control"
+        placeholder="Comentario"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        [(ngModel)]="socio.comentario"
+      ></textarea>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="guardar()">
+      Actualizar
+    </button>
   </div>
 </div>

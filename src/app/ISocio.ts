@@ -2,12 +2,17 @@ export interface Socio {
     id: number;
     nombre: string;
     apellido: string;
+    cedula: string;
+    sexo: string;
     correo: string;
-    empresa: string;
+    fechaIngreso: string;
+    pagoCategoria: string;
+    pagoFrecuencia: string;
     cargo: string;
+    empresa: string;
     telefonoCelular: string;
     telefonoEmpresa: string;
-    cedula: string;
-    contactoPago: string;
+    direccion: string;
     comentario: string;
+    contactoPago: string;
 }

@@ -35,6 +35,7 @@ export class SocioDetalleComponent implements OnInit {
   obtenerSocio(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.socioServicio.obtenerSocio(id).subscribe(socio => this.socio = socio);
+    this.socioServicio.obtenerSocio(id).subscribe(socio => console.log(socio));
   }
 
   guardar(): void{

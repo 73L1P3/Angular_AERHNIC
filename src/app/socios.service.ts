@@ -43,6 +43,20 @@ export class SociosService {
     );
   }
 
+  // Buscar Socios por nombre
+  buscarSocios(termino: string): Observable<Socio[]>{
+    if (!termino.trim()){
+      return of([]);
+    }
+
+    return this.http.get<Socio[]>(`${this.sociosUrl}/?nombre=${termino}`).pipe(
+      tap(x => x.length ?
+        this.log(`Encontramos Socios con estos terminos "${termino}"`):
+        this.log(`No encontrramos ningun socio con ese termino "${termino}"`)),
+      catchError(this.handleError<Socio[]>('buscarSocios', []))
+    );
+  }
+
   // PUT
   actualizarSocio(socio: Socio): Observable<any>{
     return this.http.put(this.sociosUrl, socio, this.httpOptions).pipe(
