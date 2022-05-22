@@ -60,6 +60,23 @@ export class InMemoryDataService implements InMemoryDbService {
         contactoPago: 'Correo Personal',
         comentario: 'Algun dia'
     },
+    {
+      id: 5,
+      nombre: "Karla", 
+      apellido: "Arcia",
+      cargo: "Jefa de Area", 
+      pagoCategoria: "Tipo B",
+      cedula: "karla@mail.com",
+      comentario: "Test",
+      correo: "karla@mail.com",
+      direccion: "Esquina norte del parque",
+      empresa: "Teleton",​
+      pagoFrecuencia: "Trimestral",
+      fechaIngreso: "2022-05-25",​
+      sexo: "Mujer",
+      telefonoCelular: "77884422",
+      telefonoEmpresa: "00998811"
+    },
     ];
     return {socios};
   }

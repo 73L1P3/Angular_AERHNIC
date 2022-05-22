@@ -228,24 +228,22 @@
     <br />
 
     <div class="row g-2">
-      <div class="col-md">
-        <div class="col-md input-group">
-          <label class="input-group-text" for="inputGroupSelect01"
-            >Categoria de pago</label
-          >
-          <select
-            class="form-select"
-            id="inputGroupSelect01"
-            #pagoCategoria
-            [(ngModel)]="socio.pagoCategoria"
-            required
-          >
-            <option value="A">Tipo A</option>
-            <option value="B">Tipo B</option>
-            <option value="C">Tipo C</option>
-            <option value="D">Tipo D</option>
-          </select>
-        </div>
+      <div class="col-md input-group">
+        <label class="input-group-text" for="inputGroupSelect01"
+          >Categoria de pago</label
+        >
+        <select
+          class="form-select"
+          id="inputGroupSelect01"
+          #pagoCategoria
+          required
+          [(ngModel)]="socio.pagoCategoria"
+        >
+          <option value="Tipo A">Tipo A</option>
+          <option value="Tipo B">Tipo B</option>
+          <option value="Tipo C">Tipo C</option>
+          <option value="Tipo D">Tipo D</option>
+        </select>
       </div>
 
       <div class="col-md input-group">
