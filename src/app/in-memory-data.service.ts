@@ -110,7 +110,35 @@ export class InMemoryDataService implements InMemoryDbService {
         comentarioEmpresa: 'Prueba 4',
       },
     ];
-    return { socios, empresas };
+
+    const categoria = [
+      {
+        id: 0,
+        nombreCategoria: 'A',
+        precioCategoria: '$5',
+        comentarioCategoria: 'hola',
+      },
+      {
+        id: 1,
+        nombreCategoria: 'D',
+        precioCategoria: '$8',
+        comentarioCategoria: 'hola',
+      },
+      {
+        id: 2,
+        nombreCategoria: 'C',
+        precioCategoria: '$9',
+        comentarioCategoria: 'hola',
+      },
+      {
+        id: 3,
+        nombreCategoria: 'D',
+        precioCategoria: '$2',
+        comentarioCategoria: 'hola',
+      },
+    ];
+
+    return { socios, empresas, categoria };
   }
 
   // Overrides the genId method to ensure that a hero always has an id.

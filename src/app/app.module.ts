@@ -23,6 +23,9 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { EmpresasComponent } from './empresas/empresas.component';
 import { EmpresaDetalleComponent } from './empresa-detalle/empresa-detalle.component';
 import { NuevoEmpresaComponent } from './nuevo-empresa/nuevo-empresa.component';
+import { CategoriaComponent } from './categoria/categoria.component';
+import { CategoriaDetalleComponent } from './categoria-detalle/categoria-detalle.component';
+import { NuevaCategoriaComponent } from './nueva-categoria/nueva-categoria.component';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import { NuevoEmpresaComponent } from './nuevo-empresa/nuevo-empresa.component';
     MensajesComponent,
     EmpresasComponent,
     EmpresaDetalleComponent,
-    NuevoEmpresaComponent
+    NuevoEmpresaComponent,
+    CategoriaComponent,
+    CategoriaDetalleComponent,
+    NuevaCategoriaComponent
   ],
   imports: [
     BrowserModule,

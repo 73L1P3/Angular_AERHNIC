@@ -8,9 +8,14 @@ import { CumpleComponent } from './cumple/cumple.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { LoginComponent } from './login/login.component';
 import { SocioDetalleComponent } from './socio-detalle/socio-detalle.component';
+
 import { EmpresasComponent } from './empresas/empresas.component';
 import { EmpresaDetalleComponent } from './empresa-detalle/empresa-detalle.component';
 import { NuevoEmpresaComponent } from './nuevo-empresa/nuevo-empresa.component';
+
+import { CategoriaComponent } from './categoria/categoria.component';
+import { CategoriaDetalleComponent } from './categoria-detalle/categoria-detalle.component';
+import { NuevaCategoriaComponent } from './nueva-categoria/nueva-categoria.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -24,6 +29,9 @@ const routes: Routes = [
   { path: 'empresas', component: EmpresasComponent },
   { path: 'empresa-detalle/:id', component: EmpresaDetalleComponent },
   { path: 'empresa-nuevo', component: NuevoEmpresaComponent },
+  { path: 'categoria', component: CategoriaComponent },
+  { path: 'categoria-detalle/:id', component: CategoriaDetalleComponent },
+  { path: 'categoria-nuevo', component: NuevaCategoriaComponent },
 ];
 
 @NgModule({

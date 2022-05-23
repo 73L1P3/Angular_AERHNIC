@@ -1,0 +1,50 @@
+<div *ngIf="categoria">
+  <div class="container">
+    <br />
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="nombreCategoria"
+            #nombreCategoria
+            required
+            [(ngModel)]="categoria.nombreCategoria"
+            name="nombreCategoria"
+          />
+          <label for="floatingInput">Tipo</label>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="precioCategoria"
+            #precioCategoria
+            [(ngModel)]="categoria.precioCategoria"
+            required
+          />
+          <label for="floatingInput">Monto de Categoria</label>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="mb-3">
+      <textarea
+        class="form-control"
+        placeholder="Comentario"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        [(ngModel)]="categoria.comentarioCategoria"
+      ></textarea>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="guardar()">
+      Actualizar
+    </button>
+  </div>
+</div>

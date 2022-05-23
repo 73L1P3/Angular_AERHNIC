@@ -1,0 +1,47 @@
+<div class="container">
+  <button class="btn btn-primary" routerLink="/categoria-nuevo">Nueva</button>
+</div>
+
+<div *ngIf="tabla">
+  <div class="container">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Precio</th>
+          <th>Comentario</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let categoria of categorias">
+          <td #categoriaNombre>{{ categoria.nombreCategoria }}</td>
+          <td>{{ categoria.precioCategoria }}</td>
+          <td>{{ categoria.comentarioCategoria }}</td>
+          <td>
+            <button
+              class="btn-primary"
+              [class.selected]="categoria === categoriaSeleccionada"
+              type="button"
+              routerLink="/categoria-detalle/{{ categoria.id }}"
+              routerLinkActive="router-link-active"
+              (click)="onSelect(categoria)"
+            >
+              Editar
+            </button>
+
+            <button
+              class="btn-primary delete"
+              type="button"
+              title="Eliminar categoria"
+              (click)="eliminar(categoria)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
