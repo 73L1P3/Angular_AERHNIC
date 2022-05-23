@@ -1,7 +1,6 @@
 <div *ngIf="empresa">
   <div class="container">
     <br />
-
     <div class="row g-2">
       <div class="col-md">
         <div class="form-floating">
@@ -35,16 +34,17 @@
     <br />
 
     <div class="mb-3">
-      <input
-        type="text"
-        [(ngModel)]="empresa.direccionEmpresa"
-        class="form-control"
-        id="direccionEmpresa"
-        placeholder="Direccion de la Empresa"
-      />
+      <div class="form-floating">
+        <input
+          type="text"
+          [(ngModel)]="empresa.direccionEmpresa"
+          class="form-control"
+          id="direccionEmpresa"
+          placeholder="Direccion de la Empresa"
+        />
+        <label for="floatingInput">Direccion de la Empresa</label>
+      </div>
     </div>
-
-    <br />
 
     <div class="mb-3">
       <textarea

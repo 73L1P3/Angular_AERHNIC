@@ -23,24 +23,6 @@
           <input
             type="text"
             class="form-control"
-            id="empresaDireccion"
-            #empresaDireccion
-            formControlName="empresaDireccion"
-            required
-          />
-          <label for="floatingInput">Direccion de la Empresa</label>
-        </div>
-      </div>
-    </div>
-
-    <br />
-
-    <div class="row g-2">
-      <div class="col-md">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
             id="emailInput"
             aria-describedby="telefonoEmpresa"
             #socioCedula
@@ -51,10 +33,29 @@
         </div>
       </div>
     </div>
+
+    <br />
+
+    <div class="row g-2">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="empresaDireccion"
+          #empresaDireccion
+          formControlName="empresaDireccion"
+          required
+        />
+        <label for="floatingInput">Direccion de la Empresa</label>
+      </div>
+    </div>
+
+    <br />
+
     <div class="mb-3">
       <textarea
         class="form-control"
-        placeholder="empresaComentario"
+        placeholder="Comentario"
         id="exampleFormControlTextarea1"
         rows="3"
         formControlName="empresaComentario"
