@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -36,13 +37,13 @@ export class NuevoComponent implements OnInit {
     nombre: new FormControl('', [Validators.required]),
     apellido:new FormControl(''),
     correo: new FormControl(''),
-    ingreso: new FormControl(''),
+    fechaIngreso: new FormControl(''),
     empresa: new FormControl(''),
     cargo: new FormControl(''),
-    categoria: new FormControl(''),
-    frecuencia: new FormControl(''),
-    telefonoCel: new FormControl(''),
-    telefonoEmp: new FormControl(''),
+    pagoCategoria: new FormControl(''),
+    pagoFrecuencia: new FormControl(''),
+    telefonoCelular: new FormControl(''),
+    telefonoEmpresa: new FormControl(''),
     cedula: new FormControl(''),
     sexo: new FormControl(''),
     direccion: new FormControl(''),
@@ -52,7 +53,8 @@ export class NuevoComponent implements OnInit {
   constructor(
     //private formBuilder: FormBuilder,
     //private validator: Validator,
-    private sociosService: SociosService
+    private sociosService: SociosService,
+    private router: Router
   ) { }
 
   onSubmit(): void {
@@ -63,8 +65,10 @@ export class NuevoComponent implements OnInit {
     var socio = this.formulario.value;
 
     this.sociosService.agregarSocio(socio).subscribe(socio => this.socios.push(socio));
-
+    
     this.formulario.reset();
+
+    this.router.navigate(['/socios']);
   }
 
   ngOnInit(): void {

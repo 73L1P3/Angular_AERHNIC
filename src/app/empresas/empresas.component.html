@@ -1,0 +1,49 @@
+<div class="container">
+  <button class="btn btn-primary" routerLink="/empresa-nuevo">Nuevo</button>
+</div>
+
+<div *ngIf="tabla">
+  <div class="container">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Direccion</th>
+          <th>Telefono</th>
+          <th>Comentario</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let empresa of empresas">
+          <td #empresaNombre>{{ empresa.nombreEmpresa }}</td>
+          <td>{{ empresa.direccionEmpresa }}</td>
+          <td>{{ empresa.telefonoEmpresa }}</td>
+          <td>{{ empresa.comentarioEmpresa }}</td>
+          <td>
+            <button
+              class="btn-primary"
+              [class.selected]="empresa === empresaSeleccionada"
+              type="button"
+              routerLink="/empresa-detalle/{{ empresa.id }}"
+              routerLinkActive="router-link-active"
+              (click)="onSelect(empresa)"
+            >
+              Editar
+            </button>
+
+            <button
+              class="btn-primary delete"
+              type="button"
+              title="Eliminar Empresa"
+              (click)="eliminar(empresa)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

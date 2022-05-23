@@ -20,6 +20,9 @@ import { MensajesComponent } from './mensajes/mensajes.component'
 import { DataTablesModule } from 'angular-datatables';
 import { CalendarModule, DateAdapter  } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { EmpresasComponent } from './empresas/empresas.component';
+import { EmpresaDetalleComponent } from './empresa-detalle/empresa-detalle.component';
+import { NuevoEmpresaComponent } from './nuevo-empresa/nuevo-empresa.component';
 
 
 @NgModule({
@@ -32,7 +35,10 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     InicioComponent,
     LoginComponent,
     SocioDetalleComponent,
-    MensajesComponent
+    MensajesComponent,
+    EmpresasComponent,
+    EmpresaDetalleComponent,
+    NuevoEmpresaComponent
   ],
   imports: [
     BrowserModule,

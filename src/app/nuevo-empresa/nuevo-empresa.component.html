@@ -1,0 +1,72 @@
+<div class="container">
+  <br />
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="empresaNombre"
+            #empresaNombre
+            formControlName="nombreEmpresa"
+            required
+            name="nombreEmpresa"
+          />
+
+          <label for="floatingInput">Nombre Empresa</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="empresaDireccion"
+            #empresaDireccion
+            formControlName="empresaDireccion"
+            required
+          />
+          <label for="floatingInput">Direccion de la Empresa</label>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="emailInput"
+            aria-describedby="telefonoEmpresa"
+            #socioCedula
+            formControlName="telefonoEmpresa"
+            required
+          />
+          <label for="floatingInput">Telefono de la Empresa</label>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <textarea
+        class="form-control"
+        placeholder="empresaComentario"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        formControlName="empresaComentario"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!formulario.valid"
+    >
+      Ingresar
+    </button>
+  </form>
+</div>

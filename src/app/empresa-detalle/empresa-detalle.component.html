@@ -1,0 +1,63 @@
+<div *ngIf="empresa">
+  <div class="container">
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="nombreEmpresa"
+            #nombreEmpresa
+            required
+            [(ngModel)]="empresa.nombreEmpresa"
+            name="nombreEmpresa"
+          />
+          <label for="floatingInput">Nombre</label>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="telefonoEmpresa"
+            #telefonoEmpresa
+            [(ngModel)]="empresa.telefonoEmpresa"
+            required
+          />
+          <label for="floatingInput">Telefono de la Empresa</label>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="mb-3">
+      <input
+        type="text"
+        [(ngModel)]="empresa.direccionEmpresa"
+        class="form-control"
+        id="direccionEmpresa"
+        placeholder="Direccion de la Empresa"
+      />
+    </div>
+
+    <br />
+
+    <div class="mb-3">
+      <textarea
+        class="form-control"
+        placeholder="Comentario"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        [(ngModel)]="empresa.comentarioEmpresa"
+      ></textarea>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="guardar()">
+      Actualizar
+    </button>
+  </div>
+</div>
