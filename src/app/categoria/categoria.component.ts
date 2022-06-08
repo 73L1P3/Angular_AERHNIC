@@ -40,6 +40,14 @@ export class CategoriaComponent implements OnInit {
       this.categorias = categoria;
 
       this.dtOptions = categoria;
+
+      this.dtOptions = {
+        // Declare the use of the extension in the dom parameter
+        dom: 'Bfrtip',
+        // Configure the buttons
+        buttons: ['copy', 'print', 'excel'],
+      };
+
       this.tabla = true;
     }); // Esperamos que el server nos mande los datos - Metodo asincrono
     console.log('mostrar data');

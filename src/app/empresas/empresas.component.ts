@@ -42,6 +42,14 @@ export class EmpresasComponent implements OnInit {
       this.empresas = empresas;
 
       this.dtOptions = empresas;
+
+      this.dtOptions = {
+        // Declare the use of the extension in the dom parameter
+        dom: 'Bfrtip',
+        // Configure the buttons
+        buttons: ['copy', 'print', 'excel'],
+      };
+
       this.tabla = true;
     }); // Esperamos que el server nos mande los datos - Metodo asincrono
     console.log('mostrar data');
