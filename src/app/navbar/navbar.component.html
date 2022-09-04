@@ -119,16 +119,19 @@
               aria-current="page"
               [routerLink]="['/cumple']"
               routerLinkActive="router-link-active"
-              >Cumpleaños</a
+              >Calendario</a
             >
           </li>
           <li class="nav-item">
             <a
               class="active nav-button btn btn-primary"
               aria-current="page"
-              onclick="window.open('https://docs.google.com/document/d/1YEO_Mgfhlciw73w63dYTUr-oVWqoOhLN5NLgTbwztxw/edit?usp=sharing')"
-              routerLinkActive="router-link-active"
-              >Manual</a
+              (click)="
+                goToLink(
+                  'drive.google.com/file/d/1pzn2jQN0PRXcG1xBKcoywyBPRv_GEjPv/view?usp=sharing'
+                )
+              "
+              >Documentacion</a
             >
           </li>
         </ul>
