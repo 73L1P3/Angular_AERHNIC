@@ -26,6 +26,8 @@ import { NuevoEmpresaComponent } from './nuevo-empresa/nuevo-empresa.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaDetalleComponent } from './categoria-detalle/categoria-detalle.component';
 import { NuevaCategoriaComponent } from './nueva-categoria/nueva-categoria.component';
+import { PagosComponent } from './pagos/pagos.component';
+import { PagosNuevoComponent } from './pagos-nuevo/pagos-nuevo.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { NuevaCategoriaComponent } from './nueva-categoria/nueva-categoria.compo
     NuevoEmpresaComponent,
     CategoriaComponent,
     CategoriaDetalleComponent,
-    NuevaCategoriaComponent
+    NuevaCategoriaComponent,
+    PagosComponent,
+    PagosNuevoComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@ import { MensajeService } from './mensaje.service';
   providedIn: 'root',
 })
 export class CategoriaService {
-  private categoriaUrl = 'api/categoria';
+  private categoriaUrl = 'api/categorias';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

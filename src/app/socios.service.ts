@@ -10,65 +10,77 @@ import { SOCIOS } from './mock-socios';
 import { MensajeService } from './mensaje.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SociosService {
-
   private sociosUrl = 'api/socios';
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private http: HttpClient, private mensajeService: MensajeService) { }
+  constructor(
+    private http: HttpClient,
+    private mensajeService: MensajeService
+  ) {}
 
-  private log(mensaje: string){
+  private log(mensaje: string) {
     this.mensajeService.add(`Servicio de Socios: ${mensaje}`);
   }
 
   // GET
   obtenerSocios(): Observable<Socio[]> {
     return this.http.get<Socio[]>(this.sociosUrl).pipe(
-      tap(_ => this.log('Socios Obtenidos')),
+      tap((_) => this.log('Socios Obtenidos')),
       catchError(this.handleError<Socio[]>('obtenerSocios', []))
     );
   }
 
   // GET/?_ID
-  obtenerSocio(id: number): Observable<Socio>{
+  obtenerSocio(id: number): Observable<Socio> {
     const url = `${this.sociosUrl}/${id}`;
-    return this.http.get<Socio>(url).pipe(
-      tap(_ => this.log(`Socio obtenido con ID=${id}`),
-      catchError(this.handleError<Socio>(`obtenerSocio ID=${id}`)))
-    );
+    return this.http
+      .get<Socio>(url)
+      .pipe(
+        tap(
+          (_) => this.log(`Socio obtenido con ID=${id}`),
+          catchError(this.handleError<Socio>(`obtenerSocio ID=${id}`))
+        )
+      );
   }
 
   // Buscar Socios por nombre
-  buscarSocios(termino: string): Observable<Socio[]>{
-    if (!termino.trim()){
+  buscarSocios(termino: string): Observable<Socio[]> {
+    if (!termino.trim()) {
       return of([]);
     }
 
     return this.http.get<Socio[]>(`${this.sociosUrl}/?nombre=${termino}`).pipe(
-      tap(x => x.length ?
-        this.log(`Encontramos Socios con estos terminos "${termino}"`):
-        this.log(`No encontrramos ningun socio con ese termino "${termino}"`)),
+      tap((x) =>
+        x.length
+          ? this.log(`Encontramos Socios con estos terminos "${termino}"`)
+          : this.log(
+              `No encontrramos ningun socio con ese termino "${termino}"`
+            )
+      ),
       catchError(this.handleError<Socio[]>('buscarSocios', []))
     );
   }
 
   // PUT
-  actualizarSocio(socio: Socio): Observable<any>{
+  actualizarSocio(socio: Socio): Observable<any> {
     return this.http.put(this.sociosUrl, socio, this.httpOptions).pipe(
-      tap(_ => this.log(`Socio Actualizado ID=${socio.id}`)),
+      tap((_) => this.log(`Socio Actualizado ID=${socio.id}`)),
       catchError(this.handleError<any>('actualizarSocio'))
     );
   }
 
   // POST
-  agregarSocio(socio: Socio): Observable<Socio>{
+  agregarSocio(socio: Socio): Observable<Socio> {
     return this.http.post<Socio>(this.sociosUrl, socio, this.httpOptions).pipe(
-      tap((nuevoSocio: Socio) => this.log(`Socio agregado con ID=${nuevoSocio.id}`)),
+      tap((nuevoSocio: Socio) =>
+        this.log(`Socio agregado con ID=${nuevoSocio.id}`)
+      ),
       catchError(this.handleError<Socio>('agregarSocio'))
     );
   }
@@ -78,21 +90,20 @@ export class SociosService {
     const url = `${this.sociosUrl}/${id}`;
 
     return this.http.delete<Socio>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`Socio Eliminado con ID: ${id}`)),
+      tap((_) => this.log(`Socio Eliminado con ID: ${id}`)),
       catchError(this.handleError<Socio>('eliminarSocio'))
     );
   }
 
   /**
- * Handle Http operation that failed.
- * Let the app continue.
- *
- * @param operacion - name of the operation that failed
- * @param resultado - optional value to return as the observable result
- */
+   * Handle Http operation that failed.
+   * Let the app continue.
+   *
+   * @param operacion - name of the operation that failed
+   * @param resultado - optional value to return as the observable result
+   */
   private handleError<T>(operacion = 'operation', resultado?: T) {
     return (error: any): Observable<T> => {
-
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
@@ -104,4 +115,3 @@ export class SociosService {
     };
   }
 }
-

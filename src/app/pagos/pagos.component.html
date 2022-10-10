@@ -1,0 +1,49 @@
+<div class="container">
+  <button class="btn btn-primary" routerLink="/pagos-nuevo">Nueva</button>
+</div>
+<br />
+<div *ngIf="tabla">
+  <div class="container">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+      <thead>
+        <tr>
+          <th>Socio</th>
+          <th>Monto</th>
+          <th>Fecha</th>
+          <th>Comentario</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let pago of pagos">
+          <td #pagoNombre>{{ pago.nombreSocio }}</td>
+          <td>{{ pago.monto }}</td>
+          <td>{{ pago.fecha }}</td>
+          <td>{{ pago.comentario }}</td>
+          <td>
+            <button
+              class="btn-primary"
+              [class.selected]="pago === pagoSeleccionado"
+              type="button"
+              routerLink="/pagos-detalle/{{ pago.id }}"
+              routerLinkActive="router-link-active"
+              (click)="onSelect(pago)"
+            >
+              Editar
+            </button>
+
+            <button
+              class="btn-primary delete"
+              type="button"
+              title="Eliminar Pago"
+              (click)="eliminar(pago)"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

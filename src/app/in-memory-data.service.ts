@@ -111,7 +111,7 @@ export class InMemoryDataService implements InMemoryDbService {
       },
     ];
 
-    const categoria = [
+    const categorias = [
       {
         id: 0,
         nombreCategoria: 'A',
@@ -138,7 +138,38 @@ export class InMemoryDataService implements InMemoryDbService {
       },
     ];
 
-    return { socios, empresas, categoria };
+    const pagos = [
+      {
+        id: 1,
+        nombreSocio: 'Jorge',
+        monto: '420',
+        fecha: '10/09/2022:13:45',
+        comentario: 'Pago realizado via ACH',
+      },
+      {
+        id: 2,
+        nombreSocio: 'Jose',
+        monto: '651',
+        fecha: '12/04/2022:07:11',
+        comentario: 'Pago en efectivo',
+      },
+      {
+        id: 3,
+        nombreSocio: 'Miguel',
+        monto: '111',
+        fecha: '12/31/2022:08:08',
+        comentario: 'Pago test',
+      },
+      {
+        id: 4,
+        nombreSocio: 'Maria',
+        monto: '1234',
+        fecha: '10/09/2022:23:22',
+        comentario: 'Pago test',
+      },
+    ];
+
+    return { socios, empresas, categorias, pagos };
   }
 
   // Overrides the genId method to ensure that a hero always has an id.
