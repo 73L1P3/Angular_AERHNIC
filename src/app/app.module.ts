@@ -28,6 +28,7 @@ import { CategoriaDetalleComponent } from './categoria-detalle/categoria-detalle
 import { NuevaCategoriaComponent } from './nueva-categoria/nueva-categoria.component';
 import { PagosComponent } from './pagos/pagos.component';
 import { PagosNuevoComponent } from './pagos-nuevo/pagos-nuevo.component';
+import { PagoDetalleComponent } from './pago-detalle/pago-detalle.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { PagosNuevoComponent } from './pagos-nuevo/pagos-nuevo.component';
     CategoriaDetalleComponent,
     NuevaCategoriaComponent,
     PagosComponent,
-    PagosNuevoComponent
+    PagosNuevoComponent,
+    PagoDetalleComponent
   ],
   imports: [
     BrowserModule,

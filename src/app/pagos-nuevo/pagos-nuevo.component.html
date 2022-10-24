@@ -1,1 +1,120 @@
-<p>pagos-nuevo works!</p>
+<div class="container">
+  <br />
+
+  <div class="col-md">
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Seleccionar Socio
+      </button>
+
+      <ul class="dropdown-menu">
+        <li *ngFor="let socio of socios">
+          <a class="dropdown-item form-control" (click)="socioSelect(socio)"
+            >{{ socio.nombre }} {{ socio.apellido }}</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <br />
+
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Nombre del Socio
+          </button>
+
+          <ul class="dropdown-menu">
+            <li *ngFor="let socio of socios">
+              <a class="dropdown-item form-control" (click)="socioSelect(socio)"
+                >{{ socio.nombre }} {{ socio.apellido }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="nombreSocio"
+            #nombreSocio
+            formControlName="nombreSocio"
+            required
+            name="nombreSocio"
+          />
+          <label for="floatingInput">Nombre Socio</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="number"
+            class="form-control"
+            id="monto"
+            aria-describedby="monto"
+            #monto
+            formControlName="monto"
+            required
+          />
+          <label for="floatingInput">Monto</label>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row g-2">
+      <div class="form-floating">
+        <input
+          type="date"
+          class="form-control"
+          id="fecha"
+          #fecha
+          formControlName="fecha"
+          required
+        />
+        <label for="floatingInput">Fecha del Pago</label>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="mb-3">
+      <textarea
+        class="form-control"
+        placeholder="Comentario"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        formControlName="comentario"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!formulario.valid"
+    >
+      Ingresar
+    </button>
+
+    <button type="button" class="btn btn-secundary">
+      <a [routerLink]="['/pagos']" style="text-decoration: none">Cancelar</a>
+    </button>
+  </form>
+</div>

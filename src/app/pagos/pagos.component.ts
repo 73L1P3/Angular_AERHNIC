@@ -50,20 +50,19 @@ export class PagosComponent implements OnInit {
     console.log('mostrar data');
   }
 
-  agregar(nombreCategoria: string): void {
-    // if (!nombreCategoria) {
-    //   return;
-    // }
-    // this.pagoService
-    //   .agregarCategoria({ nombreCategoria } as Pago)
-    //   .subscribe((pago) => {
-    //     this.categorias.push(pago);
-    //   });
-  }
+  // agregar(pago: string): void {
+  //   if (!pago) {
+  //     return;
+  //   }
+
+  //   this.pagoservice.agregarpago({ pago } as pago).subscribe((pago) => {
+  //     this.pagos.push(pago);
+  //   });
+  // }
 
   eliminar(pago: Pago): void {
-    // this.categorias = this.categorias.filter((s) => s !== pago);
-    // this.categoriaService.eliminarCategoria(pago.id).subscribe();
+    this.pagos = this.pagos.filter((s) => s !== pago);
+    this.pagoService.eliminarPago(pago.id).subscribe();
   }
 
   title = 'angular-datatables-example';

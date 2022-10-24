@@ -16,8 +16,10 @@ import { NuevoEmpresaComponent } from './nuevo-empresa/nuevo-empresa.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaDetalleComponent } from './categoria-detalle/categoria-detalle.component';
 import { NuevaCategoriaComponent } from './nueva-categoria/nueva-categoria.component';
+
 import { PagosComponent } from './pagos/pagos.component';
 import { PagosNuevoComponent } from './pagos-nuevo/pagos-nuevo.component';
+import { PagoDetalleComponent } from './pago-detalle/pago-detalle.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -36,6 +38,7 @@ const routes: Routes = [
   { path: 'categoria-nuevo', component: NuevaCategoriaComponent },
   { path: 'pagos', component: PagosComponent },
   { path: 'pagos-nuevo', component: PagosNuevoComponent },
+  { path: 'pago-detalle/:id', component: PagoDetalleComponent },
 ];
 
 @NgModule({

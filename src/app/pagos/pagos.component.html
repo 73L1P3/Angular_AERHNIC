@@ -17,7 +17,7 @@
 
       <tbody>
         <tr *ngFor="let pago of pagos">
-          <td #pagoNombre>{{ pago.nombreSocio }}</td>
+          <td #nombreSocio>{{ pago.nombreSocio }}</td>
           <td>{{ pago.monto }}</td>
           <td>{{ pago.fecha }}</td>
           <td>{{ pago.comentario }}</td>
@@ -26,7 +26,7 @@
               class="btn-primary"
               [class.selected]="pago === pagoSeleccionado"
               type="button"
-              routerLink="/pagos-detalle/{{ pago.id }}"
+              routerLink="/pago-detalle/{{ pago.id }}"
               routerLinkActive="router-link-active"
               (click)="onSelect(pago)"
             >

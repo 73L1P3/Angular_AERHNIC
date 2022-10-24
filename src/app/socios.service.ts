@@ -13,6 +13,9 @@ import { MensajeService } from './mensaje.service';
   providedIn: 'root',
 })
 export class SociosService {
+  static obtenerSocios() {
+    throw new Error('Method not implemented.');
+  }
   private sociosUrl = 'api/socios';
 
   httpOptions = {

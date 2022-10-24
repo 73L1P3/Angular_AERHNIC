@@ -1,0 +1,85 @@
+<div *ngIf="pago">
+  <div class="container">
+    <!-- <div class="row g-2">
+      <div class="col-md input-group">
+        <label class="input-group-text" for="inputGroupSelect01"
+          >Frecuencia de pago</label
+        >
+        <select
+          class="form-select"
+          id="inputGroupSelect01"
+          #pagoFrecuencia
+          //[(ngModel)]="pago.pagoFrecuencia"
+          required
+        >
+          <option value="Mensual">Mensual</option>
+          <option value="BI-Mensual">Bimensual</option>
+          <option value="Trimestral">Trimestral</option>
+          <option value="Anual">Anual</option>
+        </select>
+      </div>
+    </div> -->
+
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            #nombreSocio
+            [(ngModel)]="pago.nombreSocio"
+            required
+          />
+          <label for="floatingInput">Nombre del Socio</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="number"
+            class="form-control"
+            id="floatingInput"
+            #montoPago
+            [(ngModel)]="pago.monto"
+            required
+          />
+          <label for="floatingInput">Monto</label>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="mb-3">
+      <input
+        type="date"
+        [(ngModel)]="pago.fecha"
+        class="form-control"
+        id="fechaInput"
+        placeholder="Fecha"
+      />
+    </div>
+
+    <div class="mb-3">
+      <textarea
+        class="form-control"
+        placeholder="Comentario"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        [(ngModel)]="pago.comentario"
+      ></textarea>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="guardar()">
+      Actualizar
+    </button>
+
+    <button type="button" class="btn btn-secundary">
+      <a [routerLink]="['/pagos']" style="text-decoration: none">Cancelar</a>
+    </button>
+  </div>
+</div>
