@@ -1,7 +1,7 @@
 <div class="container">
   <br />
 
-  <div class="col-md">
+  <!-- <div class="col-md">
     <div class="dropdown">
       <button
         class="btn btn-secondary dropdown-toggle"
@@ -21,31 +21,27 @@
       </ul>
     </div>
   </div>
+  <br /> -->
+
+  <div class="form-group">
+    <label>Socio</label>
+    <select
+      class="form-control select2 select2-hidden-accessible"
+      style="width: 100%"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <option selected="selected">N/A</option>
+      <option *ngFor="let socio of socios">
+        {{ socio.nombre }} {{ socio.apellido }}
+      </option>
+    </select>
+  </div>
+
   <br />
 
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="row g-2">
-      <div class="col-md">
-        <div class="dropdown">
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Nombre del Socio
-          </button>
-
-          <ul class="dropdown-menu">
-            <li *ngFor="let socio of socios">
-              <a class="dropdown-item form-control" (click)="socioSelect(socio)"
-                >{{ socio.nombre }} {{ socio.apellido }}</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-
       <div class="col-md">
         <div class="form-floating">
           <input
