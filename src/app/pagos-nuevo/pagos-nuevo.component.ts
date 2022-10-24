@@ -16,6 +16,9 @@ import { Location } from '@angular/common';
 import { Socio } from '../ISocio';
 import { SociosService } from '../socios.service';
 
+// JQuery Usage
+declare var $: any;
+
 @Component({
   selector: 'app-pagos-nuevo',
   templateUrl: './pagos-nuevo.component.html',
@@ -73,5 +76,6 @@ export class PagosNuevoComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerSocios();
+    $('.select2').select2(); //Select2
   }
 }

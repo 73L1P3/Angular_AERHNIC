@@ -15,10 +15,10 @@ import { CumpleComponent } from './cumple/cumple.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { LoginComponent } from './login/login.component';
 import { SocioDetalleComponent } from './socio-detalle/socio-detalle.component';
-import { MensajesComponent } from './mensajes/mensajes.component'
+import { MensajesComponent } from './mensajes/mensajes.component';
 
 import { DataTablesModule } from 'angular-datatables';
-import { CalendarModule, DateAdapter  } from 'angular-calendar';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { EmpresasComponent } from './empresas/empresas.component';
 import { EmpresaDetalleComponent } from './empresa-detalle/empresa-detalle.component';
@@ -28,8 +28,6 @@ import { CategoriaDetalleComponent } from './categoria-detalle/categoria-detalle
 import { NuevaCategoriaComponent } from './nueva-categoria/nueva-categoria.component';
 import { PagosComponent } from './pagos/pagos.component';
 import { PagosNuevoComponent } from './pagos-nuevo/pagos-nuevo.component';
-import { PagoDetalleComponent } from './pago-detalle/pago-detalle.component';
-
 
 @NgModule({
   declarations: [
@@ -50,7 +48,8 @@ import { PagoDetalleComponent } from './pago-detalle/pago-detalle.component';
     NuevaCategoriaComponent,
     PagosComponent,
     PagosNuevoComponent,
-    PagoDetalleComponent
+    PagoDetalleComponent,
+    PagoDetalleComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,9 +60,9 @@ import { PagoDetalleComponent } from './pago-detalle/pago-detalle.component';
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+      dataEncapsulation: false,
+    }),
     DataTablesModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
@@ -71,6 +70,6 @@ import { PagoDetalleComponent } from './pago-detalle/pago-detalle.component';
     }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
