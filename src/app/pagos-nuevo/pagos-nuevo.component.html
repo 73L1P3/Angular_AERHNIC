@@ -1,28 +1,6 @@
 <div class="container">
   <br />
 
-  <!-- <div class="col-md">
-    <div class="dropdown">
-      <button
-        class="btn btn-secondary dropdown-toggle"
-        type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        Seleccionar Socio
-      </button>
-
-      <ul class="dropdown-menu">
-        <li *ngFor="let socio of socios">
-          <a class="dropdown-item form-control" (click)="socioSelect(socio)"
-            >{{ socio.nombre }} {{ socio.apellido }}</a
-          >
-        </li>
-      </ul>
-    </div>
-  </div>
-  <br /> -->
-
   <div class="form-group">
     <label>Socio</label>
     <select
@@ -31,15 +9,27 @@
       tabindex="-1"
       aria-hidden="true"
     >
-      <option selected="selected">N/A</option>
-      <option *ngFor="let socio of socios">
+      <option value="default">N/A</option>
+      <option
+        *ngFor="let socio of socios"
+        [value]="socio.nombre + ' ' + socio.apellido"
+        [attr.data-socio-nombre]="socio.nombre + ' ' + socio.apellido"
+        [attr.data-pagoCategoria]="socio.pagoCategoria"
+        [attr.data-pagoFrecuencia]="socio.pagoFrecuencia"
+      >
         {{ socio.nombre }} {{ socio.apellido }}
+        <!-- {{ socio.nombre }} {{ socio.apellido }}| {{ socio.pagoCategoria }} |
+        {{ socio.pagoFrecuencia }} -->
       </option>
     </select>
   </div>
-
+  <!-- 
   <br />
 
+  <h3>Seleccionaste {{ socioNombre }}</h3>
+ -->
+
+  <br />
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="row g-2">
       <div class="col-md">
@@ -50,8 +40,10 @@
             id="nombreSocio"
             #nombreSocio
             formControlName="nombreSocio"
-            required
+            readonly
             name="nombreSocio"
+            value="{{ socioNombre }}"
+            
           />
           <label for="floatingInput">Nombre Socio</label>
         </div>
@@ -76,16 +68,68 @@
     <br />
 
     <div class="row g-2">
-      <div class="form-floating">
-        <input
-          type="date"
-          class="form-control"
-          id="fecha"
-          #fecha
-          formControlName="fecha"
-          required
-        />
-        <label for="floatingInput">Fecha del Pago</label>
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control"
+            id="fechaPago"
+            #fechaPago
+            formControlName="fechaPago"
+            required
+          />
+          <label for="floatingInput">Fecha del Pago</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control"
+            id="fechaPagoSiguiente"
+            #fechaPagoSiguiente
+            formControlName="fechaPagoSiguiente"
+            required
+          />
+          <label for="floatingInput">Fecha del Proximo Pago</label>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="categoriaPago"
+            #categoriaPago
+            formControlName="categoriaPago"
+            
+            value="{{ socioCategoriaPago }}"
+            readonly
+          />
+          <label for="floatingInput">Categoria del Pago</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            value="{{ socioFrecuenciaPago }}"
+            id="frecuenciaPago"
+            #frecuenciaPago
+            formControlName="frecuenciaPago"
+            value="{{ socioFrecuenciaPago }}"
+            readonly
+          />
+          <label for="floatingInput">Frecuencia del Pago</label>
+        </div>
       </div>
     </div>
 

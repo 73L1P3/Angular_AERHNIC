@@ -2,6 +2,9 @@ export interface Pago {
   id: number;
   nombreSocio: string;
   monto: string;
-  fecha: string;
+  fechaPago: string;
+  fechaPagoSiguiente: string;
+  categoriaPago: string;
+  frecuenciaPago: string;
   comentario: string;
 }
