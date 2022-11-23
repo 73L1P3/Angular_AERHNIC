@@ -17,6 +17,9 @@ import { Socio } from '../ISocio';
 import { SociosService } from '../socios.service';
 import { TestBed } from '@angular/core/testing';
 
+import {add } from 'date-fns'
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
+
 declare var $: any;
 
 @Component({
@@ -34,6 +37,7 @@ export class PagosNuevoComponent implements OnInit {
   socioNombre: any = 'N/A ';
   socioCategoriaPago: any;
   socioFrecuenciaPago: any;
+  socioPagoSiguiente: any;
 
   obtenerSocios(): void {
     this.socioService.obtenerSocios().subscribe((socios) => {
@@ -74,7 +78,7 @@ export class PagosNuevoComponent implements OnInit {
       })
 
       console.log(this.formulario)
-      alert('wait')
+      //alert('wait')
 
 
     var pago = this.formulario.value;
@@ -90,6 +94,10 @@ export class PagosNuevoComponent implements OnInit {
 
   socioSelect(socio: any) {
     console.log(socio.nombre);
+
+    var today = new Date();
+
+    $('#fechaPago').value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
   }
 
   select2Selected() {
@@ -105,10 +113,56 @@ export class PagosNuevoComponent implements OnInit {
     });
   }
 
+  addDate(eventDate: string) {
+    //console.log(`Agregaremos a la fecha ${this.socioFrecuenciaPago}`)
+
+    if (this.socioFrecuenciaPago == "Mensual") {
+      console.log('Agregamos 1 mes a ' + eventDate)
+
+      const result = add(new Date(eventDate), {
+        months: 1,
+      })
+
+      this.socioPagoSiguiente = result.toISOString().slice(0, 10);
+    }
+
+    if (this.socioFrecuenciaPago == 'Bimensual' || this.socioFrecuenciaPago == "BI-Mensual"){
+      console.log('Agregamos 2 meses a ' + eventDate)
+
+      const result = add(new Date(eventDate), {
+        months: 2,
+      })
+
+      this.socioPagoSiguiente = result.toISOString().slice(0, 10);
+    } 
+
+    if (this.socioFrecuenciaPago == 'Trimestral'){
+      console.log('Agregamos 3 meses a ' + eventDate)
+
+      const result = add(new Date(eventDate), {
+        months: 3,
+      })
+
+      this.socioPagoSiguiente = result.toISOString().slice(0, 10);
+    } 
+
+
+    if (this.socioFrecuenciaPago == 'Anual'){
+      console.log('Agregamos 12 meses a ' + eventDate)
+
+      const result = add(new Date(eventDate), {
+        months: 12,
+      })
+
+      this.socioPagoSiguiente = result.toISOString().slice(0, 10);
+    } 
+  }
+
   ngOnInit(): void {
     this.obtenerSocios();
     $('.select2').select2();
 
     this.select2Selected();
+
   }
 }

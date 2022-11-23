@@ -1,27 +1,6 @@
 <div *ngIf="pago">
   <div class="container">
-    <!-- <div class="row g-2">
-      <div class="col-md input-group">
-        <label class="input-group-text" for="inputGroupSelect01"
-          >Frecuencia de pago</label
-        >
-        <select
-          class="form-select"
-          id="inputGroupSelect01"
-          #pagoFrecuencia
-          //[(ngModel)]="pago.pagoFrecuencia"
-          required
-        >
-          <option value="Mensual">Mensual</option>
-          <option value="BI-Mensual">Bimensual</option>
-          <option value="Trimestral">Trimestral</option>
-          <option value="Anual">Anual</option>
-        </select>
-      </div>
-    </div> -->
-
-    <br />
-
+<br>
     <div class="row g-2">
       <div class="col-md">
         <div class="form-floating">
@@ -31,7 +10,7 @@
             id="floatingInput"
             #nombreSocio
             [(ngModel)]="pago.nombreSocio"
-            required
+            readonly
           />
           <label for="floatingInput">Nombre del Socio</label>
         </div>
@@ -45,7 +24,7 @@
             id="floatingInput"
             #montoPago
             [(ngModel)]="pago.monto"
-            required
+            readonly
           />
           <label for="floatingInput">Monto</label>
         </div>
@@ -54,15 +33,34 @@
 
     <br />
 
-    <div class="mb-3">
-      <input
-        type="date"
-        [(ngModel)]="pago.fechaPago"
-        class="form-control"
-        id="fechaInput"
-        placeholder="Fecha"
-      />
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control"
+            id="fechaPago"
+            [(ngModel)]="pago.fechaPago"
+            readonly
+          />
+          <label for="floatingInput">Fecha del Pago</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control"
+            [(ngModel)]="pago.fechaPagoSiguiente"
+            id="fechaPagoSiguiente"
+          />
+          <label for="floatingInput">Fecha del Proximo Pago</label>
+        </div>
+      </div>
     </div>
+
+    <br />
 
     <div class="mb-3">
       <textarea

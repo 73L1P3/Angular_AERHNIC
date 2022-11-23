@@ -18,16 +18,9 @@
         [attr.data-pagoFrecuencia]="socio.pagoFrecuencia"
       >
         {{ socio.nombre }} {{ socio.apellido }}
-        <!-- {{ socio.nombre }} {{ socio.apellido }}| {{ socio.pagoCategoria }} |
-        {{ socio.pagoFrecuencia }} -->
       </option>
     </select>
   </div>
-  <!-- 
-  <br />
-
-  <h3>Seleccionaste {{ socioNombre }}</h3>
- -->
 
   <br />
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
@@ -43,7 +36,6 @@
             readonly
             name="nombreSocio"
             value="{{ socioNombre }}"
-            
           />
           <label for="floatingInput">Nombre Socio</label>
         </div>
@@ -77,6 +69,7 @@
             #fechaPago
             formControlName="fechaPago"
             required
+            (ngModelChange)="addDate($event)"
           />
           <label for="floatingInput">Fecha del Pago</label>
         </div>
@@ -90,7 +83,8 @@
             id="fechaPagoSiguiente"
             #fechaPagoSiguiente
             formControlName="fechaPagoSiguiente"
-            required
+            [(ngModel)]="socioPagoSiguiente"
+            readonly
           />
           <label for="floatingInput">Fecha del Proximo Pago</label>
         </div>
