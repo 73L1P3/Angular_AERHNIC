@@ -69,6 +69,7 @@
             #fechaPago
             formControlName="fechaPago"
             required
+            [(ngModel)] = "fechaActual"
             (ngModelChange)="addDate($event)"
           />
           <label for="floatingInput">Fecha del Pago</label>

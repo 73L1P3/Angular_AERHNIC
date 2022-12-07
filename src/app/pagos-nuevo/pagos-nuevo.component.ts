@@ -17,8 +17,9 @@ import { Socio } from '../ISocio';
 import { SociosService } from '../socios.service';
 import { TestBed } from '@angular/core/testing';
 
-import {add } from 'date-fns'
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
+import {add } from 'date-fns';
+import getTime from "date-fns/getTime"
+import format from "date-fns/format"
 
 declare var $: any;
 
@@ -38,6 +39,8 @@ export class PagosNuevoComponent implements OnInit {
   socioCategoriaPago: any;
   socioFrecuenciaPago: any;
   socioPagoSiguiente: any;
+
+  fechaActual: any;
 
   obtenerSocios(): void {
     this.socioService.obtenerSocios().subscribe((socios) => {
@@ -92,13 +95,6 @@ export class PagosNuevoComponent implements OnInit {
     this.router.navigate(['/pagos']);
   }
 
-  socioSelect(socio: any) {
-    console.log(socio.nombre);
-
-    var today = new Date();
-
-    $('#fechaPago').value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-  }
 
   select2Selected() {
     $('.select2').on('select2:select', (e: any) => {
@@ -110,6 +106,11 @@ export class PagosNuevoComponent implements OnInit {
       this.socioCategoriaPago = item.element.dataset.pagocategoria;
       this.socioFrecuenciaPago = item.element.dataset.pagofrecuencia;
 
+      // Fecha Actual
+      var preFechaActual = getTime(new Date);
+      this.fechaActual = format(preFechaActual, 'yyyy-MM-dd')
+      console.log(this.fechaActual);
+
     });
   }
 
@@ -119,6 +120,7 @@ export class PagosNuevoComponent implements OnInit {
     if (this.socioFrecuenciaPago == "Mensual") {
       console.log('Agregamos 1 mes a ' + eventDate)
 
+      // Agarramos la fecha actual y le agregamos 1 mes
       const result = add(new Date(eventDate), {
         months: 1,
       })
@@ -146,7 +148,6 @@ export class PagosNuevoComponent implements OnInit {
       this.socioPagoSiguiente = result.toISOString().slice(0, 10);
     } 
 
-
     if (this.socioFrecuenciaPago == 'Anual'){
       console.log('Agregamos 12 meses a ' + eventDate)
 
@@ -156,6 +157,7 @@ export class PagosNuevoComponent implements OnInit {
 
       this.socioPagoSiguiente = result.toISOString().slice(0, 10);
     } 
+
   }
 
   ngOnInit(): void {
