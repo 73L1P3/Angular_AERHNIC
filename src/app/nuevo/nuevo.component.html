@@ -14,10 +14,6 @@
             name="nombre"
           />
 
-          <!-- <div *ngIf="nombre && nombre.invalid" class="alert alert-danger">
-            Name is required
-          </div> -->
-
           <label for="floatingInput">Nombre</label>
         </div>
       </div>
@@ -98,6 +94,8 @@
             #socioIngreso
             formControlName="fechaIngreso"
             required
+            [(ngModel)] = "fechaActual"
+            required
           />
           <label for="floatingInput">Fecha de Ingreso</label>
         </div>
@@ -119,10 +117,12 @@
             #pagoCategoria
             required
           >
-            <option value="Tipo A">Tipo A</option>
-            <option value="Tipo B">Tipo B</option>
-            <option value="Tipo C">Tipo C</option>
-            <option value="Tipo D">Tipo D</option>
+            <option
+              *ngFor="let categoria of categorias"
+              [value]="categoria.nombreCategoria"
+            >
+              {{ categoria.nombreCategoria }}
+            </option>
           </select>
         </div>
       </div>
@@ -139,7 +139,7 @@
           required
         >
           <option value="Mensual">Mensual</option>
-          <option value="BI-Mensual">Bimensual</option>
+          <option value="Bimensual">Bimensual</option>
           <option value="Trimestral">Trimestral</option>
           <option value="Anual">Anual</option>
         </select>
@@ -163,18 +163,24 @@
         </div>
       </div>
 
-      <div class="col-md">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingInput"
-            #socioEmpresa
-            formControlName="empresa"
-            required
-          />
-          <label for="floatingInput">Empresa</label>
-        </div>
+      <div class="col-md input-group">
+        <label class="input-group-text" for="inputGroupSelect01"
+          >Empresas</label
+        >
+        <select
+          class="form-select"
+          id="inputGroupSelect01"
+          #socioEmpresa
+          formControlName="empresa"
+          required
+        >
+          <option
+            *ngFor="let empresa of empresas"
+            [value]="empresa.nombreEmpresa"
+          >
+            {{ empresa.nombreEmpresa }}
+          </option>
+        </select>
       </div>
     </div>
 

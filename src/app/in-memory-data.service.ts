@@ -21,6 +21,9 @@ export class InMemoryDataService implements InMemoryDbService {
         cedula: '001-123456-1234A',
         contactoPago: 'Correo Personal',
         comentario: 'SEO',
+        pagoCategoria: 'Tipo B',
+        pagoFrecuencia: 'Trimestral',
+        sexo: 'Hombre',
       },
       {
         id: 2,
@@ -34,6 +37,9 @@ export class InMemoryDataService implements InMemoryDbService {
         cedula: '001-123456-1234A',
         contactoPago: 'Correo Personal',
         comentario: 'Gerente DMS',
+        pagoCategoria: 'Tipo D',
+        pagoFrecuencia: 'Mensual',
+        sexo: 'Mujer',
       },
       {
         id: 3,
@@ -47,6 +53,9 @@ export class InMemoryDataService implements InMemoryDbService {
         cedula: '001-123456-1234A',
         contactoPago: 'Correo Personal',
         comentario: 'Rapado',
+        pagoCategoria: 'Tipo A',
+        pagoFrecuencia: 'Anual',
+        sexo: 'Hombre',
       },
       {
         id: 4,
@@ -60,6 +69,9 @@ export class InMemoryDataService implements InMemoryDbService {
         cedula: '001-123456-1234A',
         contactoPago: 'Correo Personal',
         comentario: 'Algun dia',
+        pagoCategoria: 'Tipo C',
+        pagoFrecuencia: 'Bimensual',
+        sexo: 'Mujer',
       },
       {
         id: 5,
@@ -114,26 +126,26 @@ export class InMemoryDataService implements InMemoryDbService {
     const categorias = [
       {
         id: 0,
-        nombreCategoria: 'A',
-        precioCategoria: '$5',
+        nombreCategoria: 'Tipo A',
+        precioCategoria: '$1200',
         comentarioCategoria: 'hola',
       },
       {
         id: 1,
-        nombreCategoria: 'D',
-        precioCategoria: '$8',
+        nombreCategoria: 'Tipo B',
+        precioCategoria: '$800',
         comentarioCategoria: 'hola',
       },
       {
         id: 2,
-        nombreCategoria: 'C',
-        precioCategoria: '$9',
+        nombreCategoria: 'Tipo C',
+        precioCategoria: '$500',
         comentarioCategoria: 'hola',
       },
       {
         id: 3,
-        nombreCategoria: 'D',
-        precioCategoria: '$2',
+        nombreCategoria: 'Tipo D',
+        precioCategoria: '$300',
         comentarioCategoria: 'hola',
       },
     ];

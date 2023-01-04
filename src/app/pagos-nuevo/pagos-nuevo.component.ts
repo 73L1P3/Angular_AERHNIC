@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TestBed } from '@angular/core/testing';
 
 import { Pago } from '../IPago';
 import { PagoService } from '../pago.service';
@@ -15,11 +16,13 @@ import { Location } from '@angular/common';
 
 import { Socio } from '../ISocio';
 import { SociosService } from '../socios.service';
-import { TestBed } from '@angular/core/testing';
 
-import {add } from 'date-fns';
-import getTime from "date-fns/getTime"
-import format from "date-fns/format"
+import { Categoria } from '../ICategoria';
+import { CategoriaService } from '../categoria.service';
+
+import { add } from 'date-fns';
+import getTime from 'date-fns/getTime';
+import format from 'date-fns/format';
 
 declare var $: any;
 
@@ -34,11 +37,14 @@ export class PagosNuevoComponent implements OnInit {
 
   socios: Socio[] = [];
   pagos: Pago[] = [];
+  categoria: Categoria[] = [];
 
   socioNombre: any = 'N/A ';
   socioCategoriaPago: any;
   socioFrecuenciaPago: any;
   socioPagoSiguiente: any;
+  costoCategoriaPago: any;
+  totalCategoriaPago: any;
 
   fechaActual: any;
 
@@ -50,39 +56,50 @@ export class PagosNuevoComponent implements OnInit {
     });
   }
 
+  obtenerCategorias(): void {
+    this.categoriaService.obtenerCategorias().subscribe((categoria) => {
+      this.categoria = categoria;
+
+      console.log(categoria);
+    });
+  }
+
   // Validacion de campos
   formulario = new FormGroup({
-    nombreSocio: new FormControl,
+    nombreSocio: new FormControl(),
     monto: new FormControl(''),
     fechaPago: new FormControl(''),
     fechaPagoSiguiente: new FormControl(''),
     frecuenciaPago: new FormControl(''),
     categoriaPago: new FormControl(''),
+    categoriaCosto: new FormControl(''),
+    totalAPagar: new FormControl(''),
     comentario: new FormControl(''),
   });
 
   constructor(
     private pagoService: PagoService,
     private socioService: SociosService,
+    private categoriaService: CategoriaService,
     private router: Router
   ) {}
 
   onSubmit(): void {
-    console.warn(
-      'Agregaste un pago a la base de datos',
-      this.formulario.value
-    );
+    console.warn('Agregaste un pago a la base de datos', this.formulario.value);
 
     // Establecemos los valores de las entadas del formulario
-      this.formulario.patchValue({
-        nombreSocio: this.socioNombre,
-        frecuenciaPago: this.socioFrecuenciaPago,
-        categoriaPago: this.socioCategoriaPago,
-      })
+    this.formulario.patchValue({
+      nombreSocio: this.socioNombre,
+      frecuenciaPago: this.socioFrecuenciaPago,
+      categoriaPago: this.socioCategoriaPago,
 
-      console.log(this.formulario)
-      //alert('wait')
+      // NEW
+      categoriaCosto: this.costoCategoriaPago,
+      totalAPagar: this.totalCategoriaPago,
+    });
 
+    console.log(this.formulario);
+    //alert('wait')
 
     var pago = this.formulario.value;
 
@@ -95,76 +112,97 @@ export class PagosNuevoComponent implements OnInit {
     this.router.navigate(['/pagos']);
   }
 
-
   select2Selected() {
     $('.select2').on('select2:select', (e: any) => {
       var item = e.params.data;
-
-      //console.log(item);
 
       this.socioNombre = item.text;
       this.socioCategoriaPago = item.element.dataset.pagocategoria;
       this.socioFrecuenciaPago = item.element.dataset.pagofrecuencia;
 
-      // Fecha Actual
-      var preFechaActual = getTime(new Date);
-      this.fechaActual = format(preFechaActual, 'yyyy-MM-dd')
-      console.log(this.fechaActual);
+      // NEW
+      if (this.socioCategoriaPago == 'Tipo A') {
+        this.costoCategoriaPago = this.categoria[0].precioCategoria;
+      } else if (this.socioCategoriaPago == 'Tipo B') {
+        this.costoCategoriaPago = this.categoria[1].precioCategoria;
+      } else if (this.socioCategoriaPago == 'Tipo C') {
+        this.costoCategoriaPago = this.categoria[2].precioCategoria;
+      } else if (this.socioCategoriaPago == 'Tipo D') {
+        this.costoCategoriaPago = this.categoria[3].precioCategoria;
+      } else {
+        this.costoCategoriaPago = '';
+      }
 
+      if (this.socioFrecuenciaPago == 'Mensual') {
+        this.totalCategoriaPago = this.costoCategoriaPago;
+      } else if (this.socioFrecuenciaPago == 'Bimensual') {
+        var num = this.costoCategoriaPago.replace(/\$/g, '') * 2;
+        // this.totalCategoriaPago = num.toPrecision(4)
+        this.totalCategoriaPago = num;
+      } else if (this.socioFrecuenciaPago == 'Trimestral') {
+        var num = this.costoCategoriaPago.replace(/\$/g, '') * 3;
+        this.totalCategoriaPago = num;
+      } else if (this.socioFrecuenciaPago == 'Anual') {
+        var num = this.costoCategoriaPago.replace(/\$/g, '') * 12;
+        this.totalCategoriaPago = num;
+      } else {
+        this.totalCategoriaPago = '';
+      }
+
+      // Fecha Actual
+      var preFechaActual = getTime(new Date());
+      this.fechaActual = format(preFechaActual, 'yyyy-MM-dd');
+      //console.log(this.fechaActual);
+
+      this.addDate(this.fechaActual);
     });
   }
 
   addDate(eventDate: string) {
     //console.log(`Agregaremos a la fecha ${this.socioFrecuenciaPago}`)
 
-    if (this.socioFrecuenciaPago == "Mensual") {
-      console.log('Agregamos 1 mes a ' + eventDate)
+    if (this.socioFrecuenciaPago == 'Mensual') {
+      console.log('Agregamos 1 mes a ' + eventDate);
 
       // Agarramos la fecha actual y le agregamos 1 mes
       const result = add(new Date(eventDate), {
         months: 1,
-      })
+      });
 
       this.socioPagoSiguiente = result.toISOString().slice(0, 10);
-    }
-
-    if (this.socioFrecuenciaPago == 'Bimensual' || this.socioFrecuenciaPago == "BI-Mensual"){
-      console.log('Agregamos 2 meses a ' + eventDate)
+    } else if (this.socioFrecuenciaPago == 'Bimensual') {
+      console.log('Agregamos 2 meses a ' + eventDate);
 
       const result = add(new Date(eventDate), {
         months: 2,
-      })
+      });
 
       this.socioPagoSiguiente = result.toISOString().slice(0, 10);
-    } 
-
-    if (this.socioFrecuenciaPago == 'Trimestral'){
-      console.log('Agregamos 3 meses a ' + eventDate)
+    } else if (this.socioFrecuenciaPago == 'Trimestral') {
+      console.log('Agregamos 3 meses a ' + eventDate);
 
       const result = add(new Date(eventDate), {
         months: 3,
-      })
+      });
 
       this.socioPagoSiguiente = result.toISOString().slice(0, 10);
-    } 
-
-    if (this.socioFrecuenciaPago == 'Anual'){
-      console.log('Agregamos 12 meses a ' + eventDate)
+    } else if (this.socioFrecuenciaPago == 'Anual') {
+      console.log('Agregamos 12 meses a ' + eventDate);
 
       const result = add(new Date(eventDate), {
         months: 12,
-      })
+      });
 
       this.socioPagoSiguiente = result.toISOString().slice(0, 10);
-    } 
-
+    }
   }
 
   ngOnInit(): void {
     this.obtenerSocios();
+    this.obtenerCategorias();
+
     $('.select2').select2();
 
     this.select2Selected();
-
   }
 }

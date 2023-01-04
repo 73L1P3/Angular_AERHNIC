@@ -47,7 +47,8 @@
               type="button"
               title="Ver Pagos"
               (click)="pagos(socio)"
-            >
+              routerLink="/pagos"
+              routerLink="/pagoSocio/{{ socio.id }}" >
               Pagos
             </button>
           </td>

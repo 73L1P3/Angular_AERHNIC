@@ -7,7 +7,14 @@ import { Location } from '@angular/common';
 
 import { SociosService } from '../socios.service';
 
+import { Categoria } from '../ICategoria';
+import { CategoriaService } from '../categoria.service';
+
+import { Empresa } from '../IEmpresa';
+import { EmpresaService } from '../empresa.service';
+
 import { Socio } from '../ISocio';
+import { format, getTime } from 'date-fns';
 
 @Component({
   selector: 'app-nuevo',
@@ -19,18 +26,11 @@ export class NuevoComponent implements OnInit {
   datos = this.sociosService.obtenerSocios();
 
   socios: Socio[] = [];
+  categorias: Categoria[] = [];
+  empresas: Empresa[] = [];
 
-  // formulario = this.formBuilder.group({
-  //   nombre: '',
-  //   apellido: '',
-  //   correo: '',
-  //   empresa: '',
-  //   cargo: '',
-  //   telefonoCel: '',
-  //   telefonoEmp: '',
-  //   cedula: '',
-  //   comentario: ''
-  // });
+  fechaActual: any;
+
 
   // Validacion de campos
   formulario = new FormGroup({
@@ -50,16 +50,35 @@ export class NuevoComponent implements OnInit {
     comentario: new FormControl(''),
   })
 
+  obtenerCategorias(): void {
+    this.categoriaService.obtenerCategorias().subscribe((categorias) => {
+      this.categorias = categorias;
+
+      console.log(categorias);
+    });
+  }
+
+  obtenerEmpresas(): void {
+    this.empresaService.obtenerEmpresas().subscribe((empresas) => {
+      this.empresas = empresas;
+
+      console.log(empresas);
+    });
+  }
+
+  getFecha(): void{
+    var preFechaActual = getTime(new Date());
+    this.fechaActual = format(preFechaActual, 'yyyy-MM-dd');
+  }
+
   constructor(
-    //private formBuilder: FormBuilder,
-    //private validator: Validator,
     private sociosService: SociosService,
+    private categoriaService: CategoriaService,
+    private empresaService: EmpresaService,
     private router: Router
   ) { }
 
   onSubmit(): void {
-   // TODO: 
-    //this.datos = this.sociosService.limpiarForm();
     console.warn('Agregaste un socio a la base de datos', this.formulario.value);
 
     var socio = this.formulario.value;
@@ -72,7 +91,10 @@ export class NuevoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.obtenerCategorias();
+    this.obtenerEmpresas();
+
+    this.getFecha();
   }
 
 }

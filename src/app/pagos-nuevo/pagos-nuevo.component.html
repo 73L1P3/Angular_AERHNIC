@@ -23,6 +23,7 @@
   </div>
 
   <br />
+
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="row g-2">
       <div class="col-md">
@@ -70,7 +71,6 @@
             formControlName="fechaPago"
             required
             [(ngModel)] = "fechaActual"
-            (ngModelChange)="addDate($event)"
           />
           <label for="floatingInput">Fecha del Pago</label>
         </div>
@@ -129,6 +129,47 @@
     </div>
 
     <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="categoriaCosto"
+            #categoriaCosto
+            formControlName="categoriaCosto"       
+            value="{{ costoCategoriaPago }}"
+            readonly
+          />
+          <label for="floatingInput">Costo de la Categoria</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            value="{{ totalAPagar }}"
+            id="totalAPagar"
+            #totalAPagar
+            formControlName="totalAPagar"
+            value="{{ totalCategoriaPago }}"
+            readonly
+          />
+          <label for="floatingInput">Total a Pagar</label>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading">Importante!</h4>
+      <p>Tomese en consideracion que el total a pagar es calculado multiplicando el costo de la categoria con la frecuencia de pago.</p>
+    </div>
+
 
     <div class="mb-3">
       <textarea
