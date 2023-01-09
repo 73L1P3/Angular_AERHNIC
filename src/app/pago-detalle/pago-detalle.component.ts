@@ -31,9 +31,10 @@ export class PagoDetalleComponent implements OnInit {
 
   obtenerPago(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    console.log(id)
     this.pagoService.obtenerPago(id).subscribe((pago) => (this.pago = pago));
 
-    this.pagoService.obtenerPago(id).subscribe((pago) => console.log(pago));
+    //this.pagoService.obtenerPago(id).subscribe((pago) => console.log(pago));
   }
 
   guardar(): void {

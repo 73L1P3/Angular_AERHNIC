@@ -48,20 +48,20 @@ export class PagoService {
       );
   }
 
-  // Buscar Socios por nombre
-  buscarPagos(termino: string): Observable<Pago[]> {
-    if (!termino.trim()) {
+  obtenerPagoSocio(idSocio: number): Observable<Pago[]>{
+    if (!idSocio) {
+      // Si no encuentra un pago con el IDSocio, regresar vacio
       return of([]);
     }
 
-    return this.http.get<Pago[]>(`${this.pagosUrl}/?nombre=${termino}`).pipe(
+    return this.http.get<Pago[]>(`${this.pagosUrl}/?idSocio=${idSocio}`).pipe(
       tap((x) =>
         x.length
-          ? this.log(`Encontramos Pagos con estos terminos "${termino}"`)
-          : this.log(`No encontrramos ningun pago con ese termino "${termino}"`)
+          ? this.log(`Encontramos Pagos con estos terminos "${idSocio}"`)
+          : this.log(`No encontramos ningun pago con ese termino "${idSocio}"`)
       ),
-      catchError(this.handleError<Pago[]>('buscarSocios', []))
-    );
+      catchError(this.handleError<Pago[]>('buscarPagos', []))
+    );    
   }
 
   // PUT
@@ -99,7 +99,7 @@ export class PagoService {
    * @param operacion - name of the operation that failed
    * @param resultado - optional value to return as the observable result
    */
-  private handleError<T>(operacion = 'operation', resultado?: T) {
+  public handleError<T>(operacion = 'operation', resultado?: T) {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead

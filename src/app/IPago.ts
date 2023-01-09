@@ -1,10 +1,13 @@
 export interface Pago {
   id: number;
+  idSocio: number;
   nombreSocio: string;
-  monto: string;
+  montoPagado: string;
+  montoFaltante: string;
   fechaPago: string;
   fechaPagoSiguiente: string;
-  categoriaPago: string;
+  categoriaCosto: string;
+  categoriaTipo: string;
   frecuenciaPago: string;
   comentario: string;
 }

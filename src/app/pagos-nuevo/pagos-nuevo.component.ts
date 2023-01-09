@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -23,6 +29,10 @@ import { CategoriaService } from '../categoria.service';
 import { add } from 'date-fns';
 import getTime from 'date-fns/getTime';
 import format from 'date-fns/format';
+import { isAfter, isBefore, isSameDay } from 'date-fns';
+
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 declare var $: any;
 
@@ -33,20 +43,24 @@ declare var $: any;
 })
 export class PagosNuevoComponent implements OnInit {
   datos = this.pagoService.obtenerPagos();
-  //nombreSocios = SociosService.obtenerSocios();
 
   socios: Socio[] = [];
   pagos: Pago[] = [];
   categoria: Categoria[] = [];
 
-  socioNombre: any = 'N/A ';
+  socioNombre: any = 'N/A';
   socioCategoriaPago: any;
   socioFrecuenciaPago: any;
   socioPagoSiguiente: any;
   costoCategoriaPago: any;
   totalCategoriaPago: any;
 
+  montoPagado: any;
+
   fechaActual: any;
+
+  isEnabled: boolean = true;
+  puedePagar: boolean = true;
 
   obtenerSocios(): void {
     this.socioService.obtenerSocios().subscribe((socios) => {
@@ -60,13 +74,13 @@ export class PagosNuevoComponent implements OnInit {
     this.categoriaService.obtenerCategorias().subscribe((categoria) => {
       this.categoria = categoria;
 
-      console.log(categoria);
+      //console.log(categoria);
     });
   }
 
   // Validacion de campos
   formulario = new FormGroup({
-    nombreSocio: new FormControl(),
+    nombreSocio: new FormControl(''),
     monto: new FormControl(''),
     fechaPago: new FormControl(''),
     fechaPagoSiguiente: new FormControl(''),
@@ -85,8 +99,6 @@ export class PagosNuevoComponent implements OnInit {
   ) {}
 
   onSubmit(): void {
-    console.warn('Agregaste un pago a la base de datos', this.formulario.value);
-
     // Establecemos los valores de las entadas del formulario
     this.formulario.patchValue({
       nombreSocio: this.socioNombre,
@@ -98,39 +110,41 @@ export class PagosNuevoComponent implements OnInit {
       totalAPagar: this.totalCategoriaPago,
     });
 
-    console.log(this.formulario);
-    //alert('wait')
-
     var pago = this.formulario.value;
 
-    this.pagoService
-      .agregarPago(pago)
-      .subscribe((pago) => this.pagos.push(pago));
 
-    this.formulario.reset();
+    if (pago.monto < pago.totalAPagar) {
+      alert('El monto es menor al total a pagar');
+    } else if (pago.monto == pago.totalAPagar) {
+      this.pagoService
+        .agregarPago(pago)
+        .subscribe((pago) => this.pagos.push(pago));
 
-    this.router.navigate(['/pagos']);
+        console.warn('Agregaste un pago a la base de datos', this.formulario.value);
+
+        alert('wait');
+
+      this.formulario.reset();
+      this.router.navigate(['/pagos']);
+    } else if (pago.monto > pago.totalAPagar) {
+      alert('El monto no puede ser mayor al total a pagar');
+    }
   }
 
   select2Selected() {
     $('.select2').on('select2:select', (e: any) => {
       var item = e.params.data;
+      var socioID = item.element.dataset.idsocio;
 
       this.socioNombre = item.text;
       this.socioCategoriaPago = item.element.dataset.pagocategoria;
       this.socioFrecuenciaPago = item.element.dataset.pagofrecuencia;
 
-      // NEW
-      if (this.socioCategoriaPago == 'Tipo A') {
-        this.costoCategoriaPago = this.categoria[0].precioCategoria;
-      } else if (this.socioCategoriaPago == 'Tipo B') {
-        this.costoCategoriaPago = this.categoria[1].precioCategoria;
-      } else if (this.socioCategoriaPago == 'Tipo C') {
-        this.costoCategoriaPago = this.categoria[2].precioCategoria;
-      } else if (this.socioCategoriaPago == 'Tipo D') {
-        this.costoCategoriaPago = this.categoria[3].precioCategoria;
-      } else {
-        this.costoCategoriaPago = '';
+      for (let x in this.categoria) {
+        // console.log(this.categoria[i].nombreCategoria)
+        if (this.socioCategoriaPago == this.categoria[x].nombreCategoria) {
+          this.costoCategoriaPago = this.categoria[x].precioCategoria;
+        }
       }
 
       if (this.socioFrecuenciaPago == 'Mensual') {
@@ -154,7 +168,13 @@ export class PagosNuevoComponent implements OnInit {
       this.fechaActual = format(preFechaActual, 'yyyy-MM-dd');
       //console.log(this.fechaActual);
 
+      this.obtenerPago(socioID);
+
       this.addDate(this.fechaActual);
+
+      // CHECKBOX
+      $('#pagoInput').prop('checked', false);
+      $('#adelantoInput').prop('checked', false);
     });
   }
 
@@ -197,6 +217,77 @@ export class PagosNuevoComponent implements OnInit {
     }
   }
 
+  obtenerPago(socioID: number): void {
+    const IdSocio = socioID;
+
+    this.pagoService
+      .obtenerPagoSocio(IdSocio)
+      .pipe(
+        catchError(() => {
+          return throwError(() => new Error('ups something happened'));
+        })
+      )
+      // .subscribe((pago) => console.log(pago));
+      .subscribe({
+        next: (Pagos) => {
+          if (!Pagos || !Pagos.length) {
+            console.warn('No hay pagos');
+            this.isEnabled = false;
+          } else {
+            var fechaPagoReciente = new Date(Pagos[0].fechaPago);
+
+            var puedePagar, preFechaPago;
+
+            for (let x in Pagos) {
+              preFechaPago = getTime(new Date());
+              puedePagar = isBefore(
+                preFechaPago,
+                new Date(Pagos[x].fechaPagoSiguiente)
+              );
+
+              if (isBefore(fechaPagoReciente, new Date(Pagos[x].fechaPago))) {
+                fechaPagoReciente = new Date(Pagos[x].fechaPago);
+                //console.log(fechaPagoReciente)
+              }
+            }
+
+            // DONE
+            if (puedePagar == false) {
+              alert('El usuario puede pagar');
+              this.isEnabled = false;
+            } else {
+              alert('El usuario ya pago');
+              this.isEnabled = true;
+            }
+          }
+        },
+        error: (err: any) => {
+          console.error('Error');
+        },
+        complete: () => {},
+      });
+  }
+
+  // CHECKBOX
+  checkbox(checkBoxPago: any,checkBoxAdelanto: any): void{
+
+    if (checkBoxPago.is(':checked')){
+      console.log(this.puedePagar)
+
+      if (this.puedePagar == false) {
+        //alert('El usuario puede pagar');
+        this.isEnabled = false;
+      } else {
+        //alert('El usuario ya pago');
+        this.isEnabled = true;
+      }
+    }
+    else {
+      console.log('adelanto')
+      this.isEnabled = false;
+    }
+  }
+
   ngOnInit(): void {
     this.obtenerSocios();
     this.obtenerCategorias();
@@ -204,5 +295,14 @@ export class PagosNuevoComponent implements OnInit {
     $('.select2').select2();
 
     this.select2Selected();
+
+    // CHECKBOX
+    $('.form-check').on('click', () => {
+      var checkBoxPago = $('#pagoInput');
+      var checkBoxAdelanto = ('#adelantoInput');
+
+      this.checkbox(checkBoxPago,checkBoxAdelanto);
+    });
+
   }
 }

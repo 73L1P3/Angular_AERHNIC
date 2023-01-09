@@ -12,17 +12,32 @@
       <option value="default">N/A</option>
       <option
         *ngFor="let socio of socios"
-        [value]="socio.nombre + ' ' + socio.apellido"
-        [attr.data-socio-nombre]="socio.nombre + ' ' + socio.apellido"
+        [value]="socio.nombre + socio.apellido"
+        [attr.data-socio-nombre]="socio.nombre + socio.apellido"
         [attr.data-pagoCategoria]="socio.pagoCategoria"
         [attr.data-pagoFrecuencia]="socio.pagoFrecuencia"
-      >
-        {{ socio.nombre }} {{ socio.apellido }}
-      </option>
+        [attr.data-idSocio] = "socio.id"
+      >{{ socio.nombre }} {{ socio.apellido }}</option>
     </select>
   </div>
 
   <br />
+
+<!-- CHECKBOX   -->
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="pagoInput" >
+    <label class="form-check-label" for="flexRadioDefault1">
+      Pago
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="adelantoInput">
+    <label class="form-check-label" for="flexRadioDefault2">
+      Adelanto
+    </label>
+  </div>
+
+  <br>
 
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="row g-2">
@@ -38,7 +53,7 @@
             name="nombreSocio"
             value="{{ socioNombre }}"
           />
-          <label for="floatingInput">Nombre Socio</label>
+          <label for="floatingInput">Nombre del Socio</label>
         </div>
       </div>
 
@@ -51,6 +66,8 @@
             aria-describedby="monto"
             #monto
             formControlName="monto"
+            name="montoPagado"
+            [readonly]="isEnabled"
             required
           />
           <label for="floatingInput">Monto</label>
@@ -103,7 +120,6 @@
             id="categoriaPago"
             #categoriaPago
             formControlName="categoriaPago"
-            
             value="{{ socioCategoriaPago }}"
             readonly
           />
