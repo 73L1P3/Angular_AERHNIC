@@ -1,6 +1,6 @@
 <div *ngIf="pago">
   <div class="container">
-<br>
+  <br>
     <div class="row g-2">
       <div class="col-md">
         <div class="form-floating">
@@ -19,14 +19,78 @@
       <div class="col-md">
         <div class="form-floating">
           <input
-            type="number"
+            type="text"
             class="form-control"
             id="floatingInput"
             #montoPago
+            [(ngModel)]="pago.categoriaTipo"
+            readonly
+          />
+          <label for="floatingInput">Tipo de Categoria</label>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            #nombreSocio
+            [(ngModel)]="pago.categoriaCosto"
+            readonly
+          />
+          <label for="floatingInput">Costo de Categoria</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            #montoPago
+            [(ngModel)]="pago.frecuenciaPago"
+            readonly
+          />
+          <label for="floatingInput">Frecuencia de Pago</label>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            #nombreSocio
             [(ngModel)]="pago.montoPagado"
             readonly
           />
-          <label for="floatingInput">Monto</label>
+          <label for="floatingInput">Monto Pagado</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            #montoPago
+            [(ngModel)]="pago.montoFaltante"
+            readonly
+          />
+          <label for="floatingInput">Monto Faltante</label>
         </div>
       </div>
     </div>

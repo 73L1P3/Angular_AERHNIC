@@ -8,9 +8,11 @@
       <thead>
         <tr>
           <th>Socio</th>
-          <th>Monto</th>
-          <th>Fecha</th>
-          <th>Comentario</th>
+          <th>Monto Pagado</th>
+          <th>Monto Restante</th>
+          <th>Fecha de Pago</th>
+          <th>Proximo Pago</th>
+          <th>Frecuencia de Pago</th>
           <th>Opciones</th>
         </tr>
       </thead>
@@ -19,8 +21,10 @@
         <tr *ngFor="let pago of pagos">
           <td #nombreSocio>{{ pago.nombreSocio }}</td>
           <td>{{ pago.montoPagado }}</td>
+          <td>{{ pago.montoFaltante }}</td>
           <td>{{ pago.fechaPago }}</td>
-          <td>{{ pago.comentario }}</td>
+          <td>{{ pago.fechaPagoSiguiente }}</td>
+          <td>{{ pago.frecuenciaPago }}</td>
           <td>
             <button
               class="btn-primary"
