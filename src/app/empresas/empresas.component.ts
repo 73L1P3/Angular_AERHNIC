@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Empresa } from '../IEmpresa';
-import { EMPRESAS } from '../mock-empresas'; // BD
 
 import { EmpresaService } from '../empresa.service'; //Servicio
 

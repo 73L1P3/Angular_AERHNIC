@@ -47,6 +47,7 @@ export class NuevoComponent implements OnInit {
     cedula: new FormControl(''),
     sexo: new FormControl(''),
     direccion: new FormControl(''),
+    estado: new FormControl(''),
     comentario: new FormControl(''),
   })
 

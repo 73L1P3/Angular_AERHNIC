@@ -21,7 +21,7 @@
           <td>{{ categoria.comentarioCategoria }}</td>
           <td>
             <button
-              class="btn-primary"
+              class="btn btn-primary"
               [class.selected]="categoria === categoriaSeleccionada"
               type="button"
               routerLink="/categoria-detalle/{{ categoria.id }}"
@@ -32,7 +32,7 @@
             </button>
 
             <button
-              class="btn-primary delete"
+              class="btn btn-danger"
               type="button"
               title="Eliminar categoria"
               (click)="eliminar(categoria)"

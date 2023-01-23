@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Pago } from '../IPago';
+
 import { MensajeService } from '../mensaje.service';
 import { PagoService } from '../pago.service';
 

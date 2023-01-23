@@ -246,7 +246,8 @@
 
     <br />
 
-    <div class="mb-3">
+    <div class="row g-2">
+      <div class="col-md">
       <input
         type="text"
         class="form-control"
@@ -256,6 +257,24 @@
         required
       />
     </div>
+
+    <div class="input-group col-md">
+      <label class="input-group-text" for="inputGroupSelect02">Estado</label>
+      <select
+        class="form-select"
+        id="inputGroupSelect02"
+        formControlName="estado"
+        #socioEstado
+        required
+        id="inputGroupSelect02"
+      >
+        <option value="Activo">Activo</option>
+        <option value="Inactivo">Inactivo</option>
+      </select>
+    </div>
+  </div>
+
+  <br>
 
     <div class="mb-3">
       <textarea

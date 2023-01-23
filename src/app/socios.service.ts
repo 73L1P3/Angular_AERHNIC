@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Socio } from './ISocio';
-import { SOCIOS } from './mock-socios';
 
 import { MensajeService } from './mensaje.service';
 

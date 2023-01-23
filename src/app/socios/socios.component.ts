@@ -17,7 +17,7 @@ export class SociosComponent implements OnInit {
   tabla: boolean = false;
 
   socioSeleccionado?: Socio;
-
+  
   constructor(
     private sociosService: SociosService,
     private mensajeService: MensajeService
@@ -67,7 +67,10 @@ export class SociosComponent implements OnInit {
   }
 
   pagos(socio: Socio): void {
-    console.log(socio.nombre + ' ' + socio.apellido);
+    this.socioSeleccionado = socio;
+    this.mensajeService.add(
+      `Componente de Socios: Socio seleccionado con ID=${socio.id}`
+    );
   }
 
   title = 'angular-datatables-example';

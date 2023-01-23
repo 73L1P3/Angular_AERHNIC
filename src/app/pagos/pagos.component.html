@@ -27,7 +27,7 @@
           <td>{{ pago.frecuenciaPago }}</td>
           <td>
             <button
-              class="btn-primary"
+              class="btn btn-primary"
               [class.selected]="pago === pagoSeleccionado"
               type="button"
               routerLink="/pago-detalle/{{ pago.id }}"
@@ -38,13 +38,14 @@
             </button>
 
             <button
-              class="btn-primary delete"
+              class="btn btn-danger"
               type="button"
               title="Eliminar Pago"
               (click)="eliminar(pago)"
             >
               Eliminar
             </button>
+
           </td>
         </tr>
       </tbody>

@@ -23,7 +23,7 @@
           <td>{{ empresa.comentarioEmpresa }}</td>
           <td>
             <button
-              class="btn-primary"
+              class="btn btn-primary"
               [class.selected]="empresa === empresaSeleccionada"
               type="button"
               routerLink="/empresa-detalle/{{ empresa.id }}"
@@ -34,7 +34,7 @@
             </button>
 
             <button
-              class="btn-primary delete"
+              class="btn btn-danger"
               type="button"
               title="Eliminar Empresa"
               (click)="eliminar(empresa)"

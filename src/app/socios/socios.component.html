@@ -4,7 +4,7 @@
 <br />
 <div *ngIf="tabla">
   <div class="container">
-    <table datatable [dtOptions]="dtOptions" class="row-border hover">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover" id="sociosDataTable">
       <thead>
         <tr>
           <th>Nombre</th>
@@ -23,9 +23,10 @@
           <td>{{ socio.empresa }}</td>
           <td>
             <button
-              class="btn-primary"
+              class="btn btn-primary"
               [class.selected]="socio === socioSeleccionado"
               type="button"
+              title="Editar Datos del Socio"
               routerLink="/detalle/{{ socio.id }}"
               routerLinkActive="router-link-active"
               (click)="onSelect(socio)"
@@ -34,8 +35,9 @@
             </button>
 
             <button
-              class="btn-primary delete"
+              class="btn btn-danger"
               type="button"
+              title="Eliminar Socio"
               title="Eliminar Socio"
               (click)="eliminar(socio)"
             >
@@ -43,12 +45,13 @@
             </button>
 
             <button
-              class="btn-primary delete"
+              class="btn btn-warning"
+              [class.selected]="socio === socioSeleccionado"
               type="button"
-              title="Ver Pagos"
+              title="Ver Pagos del Socio"
               (click)="pagos(socio)"
-              routerLink="/pagos"
-              routerLink="/pagoSocio/{{ socio.id }}" >
+              routerLinkActive="router-link-active"
+              routerLink="/pago-socio/{{ socio.id }}" >
               Pagos
             </button>
           </td>

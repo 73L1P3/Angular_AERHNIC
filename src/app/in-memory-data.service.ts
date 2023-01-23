@@ -24,6 +24,7 @@ export class InMemoryDataService implements InMemoryDbService {
         pagoCategoria: 'Tipo B',
         pagoFrecuencia: 'Trimestral',
         sexo: 'Hombre',
+        estado: 'Activo',
       },
       {
         id: 2,
@@ -40,6 +41,7 @@ export class InMemoryDataService implements InMemoryDbService {
         pagoCategoria: 'Tipo D',
         pagoFrecuencia: 'Mensual',
         sexo: 'Mujer',
+        estado: 'Activo',
       },
       {
         id: 3,
@@ -56,6 +58,7 @@ export class InMemoryDataService implements InMemoryDbService {
         pagoCategoria: 'Tipo A',
         pagoFrecuencia: 'Anual',
         sexo: 'Hombre',
+        estado: 'Inactivo',
       },
       {
         id: 4,
@@ -72,6 +75,7 @@ export class InMemoryDataService implements InMemoryDbService {
         pagoCategoria: 'Tipo C',
         pagoFrecuencia: 'Bimensual',
         sexo: 'Mujer',
+        estado: 'Activo',
       },
       {
         id: 5,
@@ -89,6 +93,43 @@ export class InMemoryDataService implements InMemoryDbService {
         sexo: 'Mujer',
         telefonoCelular: '77884422',
         telefonoEmpresa: '00998811',
+        estado: 'Inactivo',
+      },
+      {
+        id: 6,
+        nombre: 'Michelle',
+        apellido: 'Narvaez',
+        cargo: 'Policia',
+        pagoCategoria: 'Tipo C',
+        cedula: 'MichelleNa@mail.com',
+        comentario: 'Test',
+        correo: 'MichelleNa@mail.com',
+        direccion: 'Ometepe lounge',
+        empresa: 'Alcaldia',
+        pagoFrecuencia: 'Mensual',
+        fechaIngreso: '2022-05-25',
+        sexo: 'Mujer',
+        telefonoCelular: '77884422',
+        telefonoEmpresa: '00998811',
+        estado: 'Inactivo',
+      },
+      {
+        id: 7,
+        nombre: 'Jose',
+        apellido: 'Perez',
+        cargo: 'Gerente',
+        pagoCategoria: 'Tipo D',
+        cedula: 'joseP@mail.com',
+        comentario: 'Test',
+        correo: 'joseP@mail.com',
+        direccion: 'Cerca del palo de mango',
+        empresa: 'Curacao',
+        pagoFrecuencia: 'Aual',
+        fechaIngreso: '2022-05-25',
+        sexo: 'Hombre',
+        telefonoCelular: '77112233',
+        telefonoEmpresa: '00112233',
+        estado: 'Inactivo',
       },
     ];
 
@@ -228,8 +269,8 @@ export class InMemoryDataService implements InMemoryDbService {
         categoriaTipo: 'Tipo A',
         frecuenciaPago: 'Anual',
         comentario: '',
-      }, 
-{
+      },
+      {
         id: 7,
         idSocio: 3,
         nombreSocio: 'Clemente Guido',
@@ -241,8 +282,8 @@ export class InMemoryDataService implements InMemoryDbService {
         categoriaTipo: 'Tipo A',
         frecuenciaPago: 'Anual',
         comentario: '',
-      }, 
-{
+      },
+      {
         id: 8,
         idSocio: 3,
         nombreSocio: 'Clemente Guido',
@@ -255,7 +296,6 @@ export class InMemoryDataService implements InMemoryDbService {
         frecuenciaPago: 'Anual',
         comentario: '',
       },
-
     ];
 
     return { socios, empresas, categorias, pagos };

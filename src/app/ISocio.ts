@@ -14,5 +14,6 @@ export interface Socio {
     telefonoEmpresa: string;
     direccion: string;
     comentario: string;
+    estado: string;
     contactoPago: string;
 }

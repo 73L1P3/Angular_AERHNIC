@@ -5,7 +5,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Empresa } from './IEmpresa';
-import { EMPRESAS } from './mock-empresas';
 
 import { MensajeService } from './mensaje.service';
 
