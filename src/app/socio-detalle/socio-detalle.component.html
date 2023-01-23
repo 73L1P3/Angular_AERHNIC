@@ -239,10 +239,12 @@
           required
           [(ngModel)]="socio.pagoCategoria"
         >
-          <option value="Tipo A">Tipo A</option>
-          <option value="Tipo B">Tipo B</option>
-          <option value="Tipo C">Tipo C</option>
-          <option value="Tipo D">Tipo D</option>
+          <option
+            *ngFor="let categoria of categorias"
+            [value]="categoria.nombreCategoria"
+          >
+            {{ categoria.nombreCategoria }}
+          </option>
         </select>
       </div>
 
@@ -301,39 +303,65 @@
 
     <div class="row g-2">
       <div class="col-md">
-        <input
-          type="text"
-          [(ngModel)]="socio.telefonoCelular"
-          class="form-control"
-          id="emailInput"
-          placeholder="Telefono Celular"
-          aria-describedby="phone"
-        />
+        <div class="form-floating">
+          <input
+            type="text"
+            [(ngModel)]="socio.telefonoCelular"
+            class="form-control"
+            id="telefonoCelularInput"
+            placeholder="Telefono Celular"
+            aria-describedby="phone"
+          />
+          <label for="telefonoCelularInput">Telefono Celular</label>
+        </div>
       </div>
 
       <div class="col-md">
-        <input
-          type="text"
-          [(ngModel)]="socio.telefonoEmpresa"
-          class="form-control"
-          id="emailInput"
-          placeholder="Telefono Empresa"
-          aria-describedby="phone"
-        />
+        <div class="form-floating">
+          <input
+            type="text"
+            [(ngModel)]="socio.telefonoEmpresa"
+            class="form-control"
+            id="telefonoEmpresaInput"
+            placeholder="Telefono Empresa"
+            aria-describedby="phone"
+          />
+          <label for="telefonoEmpresaInput">Telefono Empresa</label>
+        </div>
       </div>
     </div>
 
     <br />
 
-    <div class="mb-3">
-      <input
-        type="text"
-        [(ngModel)]="socio.direccion"
-        class="form-control"
-        id="direccionInput"
-        placeholder="Direccion"
-      />
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="form-floating">
+        <input
+          type="text"
+          [(ngModel)]="socio.direccion"
+          class="form-control"
+          id="direccionInput"
+          placeholder="Direccion"
+        />
+        <label for="direccionInput">Direccion</label>
+        </div>
+      </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            [(ngModel)]="socio.estado"
+            class="form-control"
+            id="estadoInput"
+            placeholder="Estado"
+          />
+          <label for="estadoInput">Estado</label>
+        </div>
+      </div>
     </div>
+
+    <br />
 
     <div class="mb-3">
       <textarea

@@ -25,6 +25,7 @@ export class InMemoryDataService implements InMemoryDbService {
         pagoFrecuencia: 'Trimestral',
         sexo: 'Hombre',
         estado: 'Activo',
+        moroso: 'No',
       },
       {
         id: 2,
@@ -42,6 +43,7 @@ export class InMemoryDataService implements InMemoryDbService {
         pagoFrecuencia: 'Mensual',
         sexo: 'Mujer',
         estado: 'Activo',
+        moroso: 'No',
       },
       {
         id: 3,
@@ -58,7 +60,8 @@ export class InMemoryDataService implements InMemoryDbService {
         pagoCategoria: 'Tipo A',
         pagoFrecuencia: 'Anual',
         sexo: 'Hombre',
-        estado: 'Inactivo',
+        estado: 'Activo',
+        moroso: 'Si',
       },
       {
         id: 4,
@@ -76,6 +79,7 @@ export class InMemoryDataService implements InMemoryDbService {
         pagoFrecuencia: 'Bimensual',
         sexo: 'Mujer',
         estado: 'Activo',
+        moroso: 'No',
       },
       {
         id: 5,
@@ -94,6 +98,7 @@ export class InMemoryDataService implements InMemoryDbService {
         telefonoCelular: '77884422',
         telefonoEmpresa: '00998811',
         estado: 'Inactivo',
+        moroso: 'Si',
       },
       {
         id: 6,
@@ -112,6 +117,7 @@ export class InMemoryDataService implements InMemoryDbService {
         telefonoCelular: '77884422',
         telefonoEmpresa: '00998811',
         estado: 'Inactivo',
+        moroso: 'Si',
       },
       {
         id: 7,
@@ -130,6 +136,7 @@ export class InMemoryDataService implements InMemoryDbService {
         telefonoCelular: '77112233',
         telefonoEmpresa: '00112233',
         estado: 'Inactivo',
+        moroso: 'No',
       },
     ];
 

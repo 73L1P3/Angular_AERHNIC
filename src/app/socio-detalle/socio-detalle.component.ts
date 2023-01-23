@@ -3,7 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Socio } from '../ISocio';
+import { Categoria } from '../ICategoria';
+
 import { SociosService } from '../socios.service';
+import { CategoriaService } from '../categoria.service';
 
 @Component({
   selector: 'app-socio-detalle',
@@ -14,6 +17,7 @@ export class SocioDetalleComponent implements OnInit {
   // @Input() socio?: Socio;
 
   socio: Socio | undefined;
+  categorias: Categoria[] = [];
 
   enviado = false;
 
@@ -24,11 +28,13 @@ export class SocioDetalleComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private socioServicio: SociosService,
+    private categoriaService: CategoriaService,
     private location: Location
   ) {}
 
   ngOnInit(): void {
     this.obtenerSocio();
+    this.obtenerCategorias();
   }
 
   obtenerSocio(): void {
@@ -40,6 +46,14 @@ export class SocioDetalleComponent implements OnInit {
     this.socioServicio
       .obtenerSocio(id)
       .subscribe((socio) => console.log(socio));
+  }
+
+  obtenerCategorias(): void {
+    this.categoriaService.obtenerCategorias().subscribe((categorias) => {
+      this.categorias = categorias;
+
+      console.log(categorias);
+    });
   }
 
   guardar(): void {

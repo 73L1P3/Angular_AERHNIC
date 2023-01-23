@@ -61,15 +61,15 @@
           <input
             type="number"
             class="form-control"
-            id="monto"
-            aria-describedby="monto"
-            #monto
-            formControlName="monto"
+            id="montoPagado"
+            aria-describedby="montoPagado"
+            #montoPagado
+            formControlName="montoPagado"
             name="montoPagado"
             [readonly]="isEnabled"
             required
           />
-          <label for="floatingInput">Monto</label>
+          <label for="floatingInput">Monto Pagado</label>
         </div>
       </div>
     </div>
@@ -116,9 +116,9 @@
           <input
             type="text"
             class="form-control"
-            id="categoriaPago"
-            #categoriaPago
-            formControlName="categoriaPago"
+            id="categoriaTipo"
+            #categoriaTipo
+            formControlName="categoriaTipo"
             value="{{ socioCategoriaPago }}"
             readonly
           />
