@@ -130,13 +130,13 @@ export class InMemoryDataService implements InMemoryDbService {
         correo: 'joseP@mail.com',
         direccion: 'Cerca del palo de mango',
         empresa: 'Curacao',
-        pagoFrecuencia: 'Aual',
+        pagoFrecuencia: 'Anual',
         fechaIngreso: '2022-05-25',
         sexo: 'Hombre',
         telefonoCelular: '77112233',
         telefonoEmpresa: '00112233',
-        estado: 'Inactivo',
-        moroso: 'No',
+        estado: 'Activo',
+        moroso: 'Si',
       },
     ];
 

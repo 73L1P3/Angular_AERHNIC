@@ -64,3 +64,68 @@
     </table>
   </div>
 </div>
+
+<br>
+<!-- 
+<h2>Morosos</h2>
+<div *ngIf="tabla">
+  <div class="container">
+    <table datatable [dtOptions]="dtOptions" class="row-border hover" id="sociosDataTable">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Estado</th>
+          <th>Moroso</th>
+
+          <th>Opciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let socio of socios">
+          <td #socioNombre>{{ socio.nombre }}</td>
+          <td>{{ socio.apellido }}</td>
+          <td>{{ socio.estado }}</td>
+          <td>{{ socio.moroso }}</td>
+
+          <td>
+            <button
+              class="btn btn-primary"
+              [class.selected]="socio === socioSeleccionado"
+              type="button"
+              title="Editar Datos del Socio"
+              routerLink="/detalle/{{ socio.id }}"
+              routerLinkActive="router-link-active"
+              (click)="onSelect(socio)"
+            >
+              Editar
+            </button>
+
+            <button
+              class="btn btn-danger"
+              type="button"
+              title="Eliminar Socio"
+              title="Eliminar Socio"
+              (click)="eliminar(socio)"
+            >
+              Eliminar
+            </button>
+
+            <button
+              class="btn btn-warning"
+              [class.selected]="socio === socioSeleccionado"
+              type="button"
+              title="Ver Pagos del Socio"
+              (click)="pagos(socio)"
+              routerLinkActive="router-link-active"
+              routerLink="/pago-socio/{{ socio.id }}" >
+              Pagos
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+ -->

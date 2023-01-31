@@ -58,6 +58,8 @@ export class PagosNuevoComponent implements OnInit {
   moroso: any;
 
   montoPagado: any;
+  socioID: any;
+  socioMoroso: any;
 
   fechaActual: any;
 
@@ -67,15 +69,13 @@ export class PagosNuevoComponent implements OnInit {
   obtenerSocios(): void {
     this.socioService.obtenerSocios().subscribe((socios) => {
       this.socios = socios;
-
-      console.log(socios);
+      //console.log(socios);
     });
   }
 
   obtenerCategorias(): void {
     this.categoriaService.obtenerCategorias().subscribe((categoria) => {
       this.categoria = categoria;
-
       //console.log(categoria);
     });
   }
@@ -113,12 +113,14 @@ export class PagosNuevoComponent implements OnInit {
 
     var pago = this.formulario.value;
 
-    console.log(pago)
-
-
     if (pago.montoPagado < pago.totalAPagar) {
       alert('El monto es menor al total a pagar');
     } else if (pago.montoPagado == pago.totalAPagar) {
+
+      this.socioMoroso.moroso = "No";
+
+      this.socioService.actualizarSocio(this.socioMoroso).subscribe((socio) => console.log('Este cliente ya no es moroso'))
+
       this.pagoService
         .agregarPago(pago)
         .subscribe((pago) => this.pagos.push(pago));
@@ -137,7 +139,10 @@ export class PagosNuevoComponent implements OnInit {
   select2Selected() {
     $('.select2').on('select2:select', (e: any) => {
       var item = e.params.data;
-      var socioID = item.element.dataset.idsocio;
+
+      this.socioID = item.element.dataset.idsocio;
+
+      this.actualizarMorosidad(this.socioID)
 
       this.socioNombre = item.text;
       this.socioFrecuenciaPago = item.element.dataset.pagofrecuencia;
@@ -173,13 +178,10 @@ export class PagosNuevoComponent implements OnInit {
       this.fechaActual = format(preFechaActual, 'yyyy-MM-dd');
       //console.log(this.fechaActual);
 
-      this.obtenerPago(socioID);
+      this.obtenerPago(this.socioID);
 
       this.addDate(this.fechaActual);
 
-      // // CHECKBOX
-      // $('#pagoInput').prop('checked', false);
-      // $('#adelantoInput').prop('checked', false);
     });
   }
 
@@ -272,25 +274,21 @@ export class PagosNuevoComponent implements OnInit {
       });
   }
 
-  // // CHECKBOX
-  // checkbox(checkBoxPago: any,checkBoxAdelanto: any): void{
+  actualizarMorosidad(socioID: string){
 
-  //   if (checkBoxPago.is(':checked')){
-  //     console.log(this.puedePagar)
+    const IdSocio = Number(socioID);
+    //alert(IdSocio)
 
-  //     if (this.puedePagar == false) {
-  //       //alert('El usuario puede pagar');
-  //       this.isEnabled = false;
-  //     } else {
-  //       //alert('El usuario ya pago');
-  //       this.isEnabled = true;
-  //     }
-  //   }
-  //   else {
-  //     console.log('adelanto')
-  //     this.isEnabled = false;
-  //   }
-  // }
+    this.socioService
+      .obtenerSocio(IdSocio)
+      .pipe(
+        catchError(() => {
+          return throwError(() => new Error('ups something happened'));
+        })
+      )
+      .subscribe((socio) => this.socioMoroso = socio);
+  }
+
 
   ngOnInit(): void {
     this.obtenerSocios();
@@ -299,14 +297,5 @@ export class PagosNuevoComponent implements OnInit {
     $('.select2').select2();
 
     this.select2Selected();
-
-    // CHECKBOX
-    $('.form-check').on('click', () => {
-      var checkBoxPago = $('#pagoInput');
-      var checkBoxAdelanto = ('#adelantoInput');
-
-      // this.checkbox(checkBoxPago,checkBoxAdelanto);
-    });
-
   }
 }
