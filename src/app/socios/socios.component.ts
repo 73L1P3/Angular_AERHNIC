@@ -51,7 +51,7 @@ export class SociosComponent implements OnInit {
         // Declare the use of the extension in the dom parameter
         dom: 'Bfrtip',
         // Configure the buttons
-        buttons: ['copy', 'print', 'excel'],
+        buttons: ['columnsToggle','copy', 'print', 'excel'],
       };
       this.tabla = true;
     }); // Esperamos que el server nos mande los datos - Metodo asincrono
