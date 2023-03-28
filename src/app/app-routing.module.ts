@@ -22,6 +22,9 @@ import { PagosNuevoComponent } from './pago-nuevo/pagos-nuevo.component';
 import { PagoDetalleComponent } from './pago-detalle/pago-detalle.component';
 import { PagoSocioComponent } from './socio-pagos/pago-socio.component';
 
+import { ReportesComponent } from './reportes/reportes.component';
+import { ReportePagosComponent } from './reporte-pagos/reporte-pagos.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'detalle/:id', component: SocioDetalleComponent },
@@ -41,6 +44,8 @@ const routes: Routes = [
   { path: 'pagos-nuevo', component: PagosNuevoComponent },
   { path: 'pago-detalle/:id', component: PagoDetalleComponent },
   { path: 'pago-socio/:id', component: PagoSocioComponent },
+  { path: 'reporte-estado', component: ReportesComponent},
+  { path: 'reporte-pago', component: ReportePagosComponent},
 ];
 
 @NgModule({

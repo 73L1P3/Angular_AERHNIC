@@ -140,6 +140,49 @@
               >Calendario</a
             >
           </li>
+          <!-- <li class="nav-item">
+            <a
+              class="active nav-button btn btn-primary"
+              aria-current="page"
+              [routerLink]="['/reportes']"
+              routerLinkActive="router-link-active"
+              >Reportes</a
+            >
+          </li> -->
+
+          <li class="nav-item dropdown">
+            <a
+              class="active nav-button btn btn-primary dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Reportes
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li class="nav-item">
+                <a
+                  class="dropdown-item"
+                  aria-current="page"
+                  [routerLink]="['/reporte-estado']"
+                  routerLinkActive="router-link-active"
+                  >Estado</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="dropdown-item"
+                  aria-current="page"
+                  [routerLink]="['/reporte-pago']"
+                  routerLinkActive="router-link-active"
+                  >Pagos</a
+                >
+              </li>
+            </ul>
+          </li>
+
           <li class="nav-item">
             <a
               class="active nav-button btn btn-primary"

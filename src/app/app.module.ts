@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { FlexmonsterPivotModule } from 'ng-flexmonster';
+
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 
@@ -30,6 +32,8 @@ import { PagosComponent } from './pagos/pagos.component';
 import { PagosNuevoComponent } from './pago-nuevo/pagos-nuevo.component';
 import { PagoDetalleComponent } from './pago-detalle/pago-detalle.component';
 import { PagoSocioComponent } from './socio-pagos/pago-socio.component';
+import { ReportesComponent } from './reportes/reportes.component';
+import { ReportePagosComponent } from './reporte-pagos/reporte-pagos.component';
 
 
 @NgModule({
@@ -52,7 +56,9 @@ import { PagoSocioComponent } from './socio-pagos/pago-socio.component';
     PagosComponent,
     PagosNuevoComponent,
     PagoDetalleComponent,
-    PagoSocioComponent
+    PagoSocioComponent,
+    ReportesComponent,
+    ReportePagosComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +66,7 @@ import { PagoSocioComponent } from './socio-pagos/pago-socio.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FlexmonsterPivotModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
