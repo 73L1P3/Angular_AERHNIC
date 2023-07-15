@@ -49,9 +49,10 @@ export class ReportesComponent implements OnInit {
     setTimeout(() => {
       var pivot = new Flexmonster({
         container: "flex1",
+        licenseKey: "Z75Y-XB4A27-543M18-604K6G",
         componentFolder: "node_modules/flexmonster/",
         width: 650,
-        toolbar: true,
+        
         report: {
           options: {
             viewType: "charts",
@@ -79,47 +80,7 @@ export class ReportesComponent implements OnInit {
           }
         }
       });
-
-      var pivot = new Flexmonster({
-        container: "flex2",
-        componentFolder: "node_modules/flexmonster/",
-        width: 650,
-        toolbar: true,
-        report: {
-          dataSource: {
-            // data: jsonData
-            data: this.socios
-          },
-          slice: {
-            rows: [
-              {
-                uniqueName: "moroso"
-            },
-            ],
-            columns: [
-
-            ],
-            measures: [
-                {
-                    uniqueName: "moroso",
-                    aggregation: "sum",
-                    active: true
-                }
-            ]
-          },
-          options: {
-            viewType: "charts",
-            chart: {
-              type: "pie"
-            }
-          }
-        }
-      });
     }, 1000); 
-    
-    
-
-
 
   }
 

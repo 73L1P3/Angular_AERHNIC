@@ -82,6 +82,7 @@ export class PagosNuevoComponent implements OnInit {
 
   // Validacion de campos
   formulario = new FormGroup({
+    idSocio: new FormControl(''),
     nombreSocio: new FormControl(''),
     montoPagado: new FormControl(''),
     montoFaltante: new FormControl(''),
@@ -104,6 +105,7 @@ export class PagosNuevoComponent implements OnInit {
   onSubmit(): void {
     // Establecemos los valores de las entadas del formulario
     this.formulario.patchValue({
+      idSocio: Number(this.socioID),
       nombreSocio: this.socioNombre,
       frecuenciaPago: this.socioFrecuenciaPago,
       categoriaTipo: this.socioCategoriaPago,

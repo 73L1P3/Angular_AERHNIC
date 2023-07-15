@@ -10,4 +10,5 @@ export interface Pago {
   categoriaTipo: string;
   frecuenciaPago: string;
   comentario: string;
+  mora?: string;
 }

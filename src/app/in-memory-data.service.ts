@@ -25,7 +25,7 @@ export class InMemoryDataService implements InMemoryDbService {
         pagoFrecuencia: 'Trimestral',
         sexo: 'Hombre',
         estado: 'Activo',
-        moroso: 'No',
+        moroso: 'Si',
       },
       {
         id: 2,

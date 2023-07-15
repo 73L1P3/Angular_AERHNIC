@@ -49,7 +49,7 @@ export class ReportePagosComponent implements OnInit {
       var pivot = new Flexmonster({
         container: "pivot-container",
         componentFolder: "node_modules/flexmonster/",
-        toolbar: true,
+        licenseKey: "Z75Y-XB4A27-543M18-604K6G",
         report: {
           dataSource: {
             // data: jsonData
@@ -58,19 +58,11 @@ export class ReportePagosComponent implements OnInit {
           slice: {
             reportFilters: [{
               "uniqueName": "fechaPago.Year",
-              "filter": {
-                 "query": {
-                    "after": "2020-03-27"
-                 }
-              }
+
            },
            {
             "uniqueName": "fechaPago.Month",
-            "filter": {
-               "query": {
-                  "after": "2020-03-27"
-               }
-            }
+
          }
           ],
             rows: [

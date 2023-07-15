@@ -15,6 +15,6 @@ export interface Socio {
     direccion: string;
     comentario: string;
     estado: string;
-    moroso: string;
+    moroso?: string;
     contactoPago: string;
 }

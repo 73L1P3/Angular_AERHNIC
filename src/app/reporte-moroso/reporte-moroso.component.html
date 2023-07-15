@@ -1,0 +1,32 @@
+<div class="container">
+    <div id="flex2"></div>
+</div>
+
+
+<div *ngIf="tabla">
+    <div class="container">
+        <table datatable [dtOptions]="dtOptions" class="row-border hover" id="sociosDataTable">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cargo</th>
+                <th>Empresa</th>
+                <th>Estado</th>
+                <th>Moroso</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let socio of socios">
+                <td #socioNombre>{{ socio.nombre }}</td>
+                <td>{{ socio.apellido }}</td>
+                <td>{{ socio.cargo }}</td>
+                <td>{{ socio.empresa }}</td>
+                <td>{{ socio.estado }}</td>
+                <td>{{ socio.moroso }}</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>

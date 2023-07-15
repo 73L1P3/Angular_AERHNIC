@@ -34,6 +34,7 @@ import { PagoDetalleComponent } from './pago-detalle/pago-detalle.component';
 import { PagoSocioComponent } from './socio-pagos/pago-socio.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { ReportePagosComponent } from './reporte-pagos/reporte-pagos.component';
+import { ReporteMorosoComponent } from './reporte-moroso/reporte-moroso.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { ReportePagosComponent } from './reporte-pagos/reporte-pagos.component';
     PagoSocioComponent,
     ReportesComponent,
     ReportePagosComponent,
+    ReporteMorosoComponent,
   ],
   imports: [
     BrowserModule,
