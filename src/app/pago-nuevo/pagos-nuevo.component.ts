@@ -53,6 +53,7 @@ export class PagosNuevoComponent implements OnInit {
   socioFrecuenciaPago: any;
   socioPagoSiguiente: any;
   costoCategoriaPago: any;
+  socioFechaPago:any;
   totalCategoriaPago: any;
   categoriaTipo: any;
   moroso: any;
@@ -77,6 +78,13 @@ export class PagosNuevoComponent implements OnInit {
     this.categoriaService.obtenerCategorias().subscribe((categoria) => {
       this.categoria = categoria;
       //console.log(categoria);
+    });
+  }
+
+  obtenerPagos(): void {
+    this.pagoService.obtenerPagos().subscribe((pagos) => {
+      this.pagos = pagos;
+      console.log(pagos);
     });
   }
 
@@ -109,6 +117,7 @@ export class PagosNuevoComponent implements OnInit {
       nombreSocio: this.socioNombre,
       frecuenciaPago: this.socioFrecuenciaPago,
       categoriaTipo: this.socioCategoriaPago,
+      fechaPago: this.socioFechaPago,
       categoriaCosto: this.costoCategoriaPago,
       totalAPagar: this.totalCategoriaPago,
     });
@@ -149,6 +158,7 @@ export class PagosNuevoComponent implements OnInit {
       this.socioNombre = item.text;
       this.socioFrecuenciaPago = item.element.dataset.pagofrecuencia;
       this.socioCategoriaPago = item.element.dataset.pagocategoria;
+      //this.socioFechaPago = item.element.dataset.fechaPago;
 
       // Pre-validamos pago por categoria (Matematica)
       for (let x in this.categoria) {
@@ -295,6 +305,7 @@ export class PagosNuevoComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerSocios();
     this.obtenerCategorias();
+    this.obtenerPagos();
 
     $('.select2').select2();
 

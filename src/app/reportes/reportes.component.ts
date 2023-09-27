@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as Flexmonster from 'flexmonster';
 import { data } from 'jquery';
-import { delay } from 'rxjs/operators';
+import { catchError, delay } from 'rxjs/operators';
 import { Socio } from '../ISocio';
 import { MensajeService } from '../mensaje.service';
 import { SociosService } from '../socios.service';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-reportes',
@@ -14,10 +15,12 @@ import { SociosService } from '../socios.service';
 export class ReportesComponent implements OnInit {
 
   socios: Socio[] = [];
+  sociosInactivo: Socio[] = [];
+  Inactivos: Socio[] = [];
 
   test: any;
-
-  socioSeleccionado?: Socio;
+  dtOptions: any = {};
+  tabla: boolean = false;
   
   constructor(
     private sociosService: SociosService,
@@ -27,24 +30,7 @@ export class ReportesComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerSocios();
 
-
-    let jsonData =  [
-      {
-          "Category": "Accessories",
-          "Price": 125,
-          "Quantity": 100
-      },
-      {
-          "Category": "Accessories",
-          "Price": 74,
-          "Quantity": 235
-      },
-      {
-          "Category": "Bikes",
-          "Price": 233,
-          "Quantity": 184
-      }
-  ];
+    this.sociosInactivos();
 
     setTimeout(() => {
       var pivot = new Flexmonster({
@@ -85,15 +71,74 @@ export class ReportesComponent implements OnInit {
   }
 
   obtenerSocios(): void {
-    // this.socios = this.sociosService.obtenerSocios(); // Metodo sincrono
     this.sociosService.obtenerSocios().subscribe((socios) => {
       this.socios = socios;
 
-      //console.log(this.socios)
-
-      //this.test = JSON.stringify(this.socios)
-
-    }); // Esperamos que el server nos mande los datos - Metodo asincrono
-    //console.log('mostrar data');
+      //this.sociosInactivo = socios;
+    });
   }
+
+  sociosInactivos():void {
+    this.sociosService
+      .obtenerSocios()
+      .pipe(
+        catchError(() => {
+          return throwError(() => new Error('ups something happened'));
+        })
+      )
+      .subscribe({
+        next: (Socios) => {
+          if (!Socios || !Socios.length) {
+            console.warn('No hay Socios Inactivos');
+          } else {
+              
+            var Inactivos;
+
+            var socioInac = this.socios.filter(a => a.estado == "Inactivo");
+            
+
+            this.sociosInactivo = this.socios.filter((property) => {
+              const index = this.socios.findIndex((otherProperty) => otherProperty.id === property.id);
+              
+              return index === this.socios.indexOf(property);
+              });
+
+
+            for (let x in socioInac){
+
+              //console.log(socioInac[x])
+
+              if (typeof this.sociosInactivo !== "undefined") {
+              
+                this.sociosService.obtenerSocio(socioInac[x].id).subscribe((Inactivos) => {
+
+
+                  this.socios[x] = Inactivos;
+
+                  //console.log(this.socios[x])
+                  console.log(Inactivos)
+
+                  this.dtOptions = this.socios[x];
+
+                  this.dtOptions = {
+                    // Declare the use of the extension in the dom parameter
+                    //dom: 'Bfrtip',
+                    // Configure the buttons
+                    //order: [[4, 'desc']],
+                  };
+                  this.tabla = true;
+                });
+              } else {
+                console.log('error');
+              }
+            }
+          }
+        },
+        error: (err: any) => {
+          console.error('Error');
+        },
+        complete: () => {},
+      });
+  }
+
 }

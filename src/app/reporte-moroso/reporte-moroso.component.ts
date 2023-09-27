@@ -36,7 +36,7 @@ export class ReporteMorosoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.obtenerSocios();
+    //this.obtenerSocios();
     this.obtenerPagos();
     this.moroso();
 
@@ -80,19 +80,19 @@ export class ReporteMorosoComponent implements OnInit {
 
   }
 
-  obtenerSocios(): void {
-    this.sociosService.obtenerSocios().subscribe((socios) => {
-      this.socios = socios;
-      //this.dtOptions = socios;
-      // this.dtOptions = {
-      //   // Declare the use of the extension in the dom parameter
-      //   dom: 'Bfrtip',
-      //   // Configure the buttons
-      //   order: [[4, 'asc']],
-      // };
-      // this.tabla = true;
-    });
-  }
+  // obtenerSocios(): void {
+  //   this.sociosService.obtenerSocios().subscribe((socios) => {
+  //     this.socios = socios;
+  //     //this.dtOptions = socios;
+  //     // this.dtOptions = {
+  //     //   // Declare the use of the extension in the dom parameter
+  //     //   dom: 'Bfrtip',
+  //     //   // Configure the buttons
+  //     //   order: [[4, 'asc']],
+  //     // };
+  //     // this.tabla = true;
+  //   });
+  // }
 
   obtenerPagos(): void{
     this.pagoService.obtenerPagos().subscribe((pagos) => {
@@ -125,72 +125,144 @@ export class ReporteMorosoComponent implements OnInit {
               return index === this.pagos.indexOf(property);
               });
 
-            console.log(this.uniquePagos)
+              for (let x in Pagos){
+                today = new Date();
 
-            for (let y in this.uniquePagos){
-              today = new Date()
+                puedePagar = isBefore(
+                  new Date(Pagos[x].fechaPagoSiguiente), today
+                );    
+                
+                if (typeof this.uniquePagos !== "undefined") {
 
-              puedePagar = isBefore(
-                new Date(Pagos[y].fechaPagoSiguiente), today
-              );                
+                      //(testing) => {this.sociosService.obtenerSocio(Pagos[x].idSocio).subscribe((testing) => {
+                      this.sociosService.obtenerSocio(this.uniquePagos[x].idSocio).subscribe((testing) => {
 
-                if (puedePagar === true){
+                        //console.log(this.socios[y])
 
-                    this.sociosService.obtenerSocio(this.uniquePagos[y].idSocio).subscribe((testing) => {
+                        this.socios[x] = testing;
 
-                      //console.log(this.socios[y])
+                        console.log(testing);
 
-
-
-                      this.socios[y] = testing;
-
-                      console.log(testing);
-
-                      this.dtOptions = testing;
-  
-                      this.dtOptions = {
-                        // Declare the use of the extension in the dom parameter
-                        //dom: 'Bfrtip',
-                        // Configure the buttons
-                        //order: [[4, 'desc']],
-                      };
-                      this.tabla = true;
-                    });
+                        this.dtOptions = testing;
+    
+                        this.dtOptions = {
+                          // Declare the use of the extension in the dom parameter
+                          //dom: 'Bfrtip',
+                          // Configure the buttons
+                          //order: [[4, 'desc']],
+                        };
+                        this.tabla = true;
+                      });
+                  } else {
+                    console.log('error');
+                  }
                 }
-            }
+// ///////////////////////////////////////////////////////////
 
+//             // for (let y in this.uniquePagos){
+//             //   today = new Date()
 
-            // for (let x in Pagos) {
-            //   today = new Date()
+//             //   puedePagar = isBefore(
+//             //     new Date(Pagos[y].fechaPagoSiguiente), today
+//             //   );               
+              
 
-            //   puedePagar = isBefore(
-            //     new Date(Pagos[x].fechaPagoSiguiente), today
-            //   );                
+//             //     if (puedePagar === true){
 
-            //     if (puedePagar === true){
+//             //         this.sociosService.obtenerSocio(this.uniquePagos[y].idSocio).subscribe((testing) => {
 
-            //       if (typeof this.uniquePagos !== "undefined") {
-            //         this.sociosService.obtenerSocio(Pagos[x].idSocio).subscribe((socios) => {
+//             //           //console.log(this.socios[y])
 
-            //           this.socios[x] = socios;
-            //           this.dtOptions = socios;
+//             //           this.socios[y] = testing;
+
+//             //           console.log(testing);
+
+//             //           this.dtOptions = testing;
   
-            //           this.dtOptions = {
-            //             // Declare the use of the extension in the dom parameter
-            //             //dom: 'Bfrtip',
-            //             // Configure the buttons
-            //             order: [[4, 'asc']],
-            //           };
-            //           this.tabla = true;
-            //         });
+//             //           this.dtOptions = {
+//             //             // Declare the use of the extension in the dom parameter
+//             //             //dom: 'Bfrtip',
+//             //             // Configure the buttons
+//             //             //order: [[4, 'desc']],
+//             //           };
+//             //           this.tabla = true;
+//             //         });
+//             //     }
+//             //   }
 
-            //       }
+
+
+
+
+// //////////////////////////////////////////////////////
+
+
+//             //console.log(this.uniquePagos)
+
+//             // for (let y in this.uniquePagos){
+//             //   today = new Date()
+
+//             //   puedePagar = isBefore(
+//             //     new Date(Pagos[y].fechaPagoSiguiente), today
+//             //   );                
+
+//             //     if (puedePagar === true){
+
+//             //         this.sociosService.obtenerSocio(this.uniquePagos[y].idSocio).subscribe((testing) => {
+
+//             //           //console.log(this.socios[y])
+
+
+
+//             //           this.socios[y] = testing;
+
+//             //           console.log(testing);
+
+//             //           this.dtOptions = testing;
+  
+//             //           this.dtOptions = {
+//             //             // Declare the use of the extension in the dom parameter
+//             //             //dom: 'Bfrtip',
+//             //             // Configure the buttons
+//             //             //order: [[4, 'desc']],
+//             //           };
+//             //           this.tabla = true;
+//             //         });
+//             //     }
+//             // }
+
+
+//             // for (let x in Pagos) {
+//             //   today = new Date()
+
+//             //   puedePagar = isBefore(
+//             //     new Date(Pagos[x].fechaPagoSiguiente), today
+//             //   );                
+
+//             //     if (puedePagar === true){
+
+//             //       if (typeof this.uniquePagos !== "undefined") {
+//             //         this.sociosService.obtenerSocio(Pagos[x].idSocio).subscribe((socios) => {
+
+//             //           this.socios[x] = socios;
+//             //           this.dtOptions = socios;
+  
+//             //           this.dtOptions = {
+//             //             // Declare the use of the extension in the dom parameter
+//             //             //dom: 'Bfrtip',
+//             //             // Configure the buttons
+//             //             order: [[4, 'asc']],
+//             //           };
+//             //           this.tabla = true;
+//             //         });
+
+//             //       }
                   
 
-            //     } else {
+//             //     } else {
                   
-            //     }
-            // }
+//             //     }
+//             // }
 
           }
         },

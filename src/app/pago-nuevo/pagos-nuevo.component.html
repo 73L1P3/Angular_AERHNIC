@@ -16,6 +16,7 @@
         [attr.data-socio-nombre]="socio.nombre + socio.apellido"
         [attr.data-pagoCategoria]="socio.pagoCategoria"
         [attr.data-pagoFrecuencia]="socio.pagoFrecuencia"
+
         [attr.data-idSocio] = "socio.id"
       >{{ socio.nombre }} {{ socio.apellido }}</option>
     </select>
@@ -76,7 +77,7 @@
 
     <br />
 
-    <div class="row g-2">
+    <div class="row g-3">
       <div class="col-md">
         <div class="form-floating">
           <input
@@ -88,7 +89,7 @@
             required
             [(ngModel)] = "fechaActual"
           />
-          <label for="floatingInput">Fecha del Pago</label>
+          <label for="floatingInput">Fecha Actual del Pago</label>
         </div>
       </div>
 
@@ -106,9 +107,33 @@
           <label for="floatingInput">Fecha del Proximo Pago</label>
         </div>
       </div>
+
+      <div class="col-md">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="fechaPago"
+            #fechaPago
+            formControlName="fechaPago"
+            value="{{ socioFechaPago }}"
+            readonly
+
+            type="text"
+            class="form-control"
+            value="{{ socioFrecuenciaPago }}"
+            id="frecuenciaPago"
+            #frecuenciaPago
+            formControlName="frecuenciaPago"
+            value="{{ socioFrecuenciaPago }}"
+            readonly
+          />
+          <label for="floatingInput">Fecha del Ultimo Pago</label>
+        </div>
+      </div>
     </div>
 
-    <br />
+  <br />
 
     <div class="row g-2">
       <div class="col-md">
